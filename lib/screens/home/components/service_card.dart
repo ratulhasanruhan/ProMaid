@@ -7,6 +7,7 @@ class ServiceCard extends StatelessWidget {
   final double height;
   final Widget? child;
   final bool showSubTexts;
+  final Color? color;
 
   const ServiceCard({
     super.key,
@@ -15,26 +16,36 @@ class ServiceCard extends StatelessWidget {
     this.height = 130,
     this.showSubTexts = false,
     this.child,
+    this.color
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
-      height: height,
       alignment: Alignment.center,
-      decoration: boxDecorationDefault(color: context.cardColor),
+      decoration: boxDecorationDefault(
+          color: color,
+        borderRadius: BorderRadius.circular(20)
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (showSubTexts) 12.height,
           Hero(
               tag: service.serviceImage + service.id.toString(),
-              child: CachedImageWidget(
-                url: service.serviceImage,
-                height: 50,
-                width: 50,
-                usePlaceholderIfUrlEmpty: false,
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                decoration: boxDecorationDefault(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+                child: CachedImageWidget(
+                  url: service.serviceImage,
+                  height: 50,
+                  width: 50,
+                  usePlaceholderIfUrlEmpty: false,
+                ),
               )),
           12.height,
           Hero(

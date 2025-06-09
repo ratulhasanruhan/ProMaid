@@ -11,7 +11,7 @@
     </queries>
     
     <application
-        android:label="Pawlly"
+        android:label="ProMaid"
         android:name="${applicationName}"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher">

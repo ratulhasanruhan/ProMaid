@@ -6,8 +6,6 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final HomeScreenController homeScreenController = Get.find();
-  final ShopDashboardController shopController = Get.put(ShopDashboardController());
-  final DashboardController dashboardController = Get.find<DashboardController>();
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                                                 borderRadius: BorderRadius.circular(20),
                                               ),
                                               child: TextField(
-                                                controller: shopController.pCont.searchCont,
+                                                //controller: shopController.pCont.searchCont,
                                                 decoration: InputDecoration(
                                                   contentPadding: const EdgeInsets.symmetric(vertical: 14),
                                                   prefixIcon: Container(
@@ -120,7 +118,7 @@ class HomeScreen extends StatelessWidget {
                                             flex: 2,
                                             child: InkWell(
                                               onTap: () {
-                                                dashboardController.currentIndex(2);
+                                               // dashboardController.currentIndex(2);
                                               },
                                               child: Container(
                                                 padding: const EdgeInsets.all(8),

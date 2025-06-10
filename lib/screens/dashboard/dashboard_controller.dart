@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:motion_tab_bar/MotionTabBarController.dart';
 import '../../utils/local_storage.dart';
 import 'package:pawlly/utils/library.dart';
 

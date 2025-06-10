@@ -6,6 +6,14 @@ class ChooseServiceComponents extends StatelessWidget {
 
   final HomeScreenController homeScreenController = Get.find();
 
+  final List<Color> cardColor = [
+    Color(0xFF46CF08).withValues(alpha: 0.03),
+    Color(0xFF888888),
+    Color(0xFF0F165C).withValues(alpha: 0.03),
+    Color(0xFFFFBC34),
+    Color(0xFFD9D9D9),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -22,11 +30,16 @@ class ChooseServiceComponents extends StatelessWidget {
           ).paddingOnly(left: 16, right: 8),
           6.height,
           Obx(
-            () => HorizontalList(
-              runSpacing: 16,
-              spacing: 16,
+            () => GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 0.85,
+              ),
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              wrapAlignment: WrapAlignment.start,
               itemCount:
                   homeScreenController.dashboardData.value.systemService.length,
               itemBuilder: (context, index) {
@@ -40,6 +53,7 @@ class ChooseServiceComponents extends StatelessWidget {
                   child: ServiceCard(
                     service: homeScreenController
                         .dashboardData.value.systemService[index],
+                    color: cardColor[index % cardColor.length],
                   ),
                 );
               },

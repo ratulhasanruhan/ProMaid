@@ -35,16 +35,19 @@ class ServiceCard extends StatelessWidget {
               tag: service.serviceImage + service.id.toString(),
               child: Container(
                 alignment: Alignment.center,
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(8),
                 decoration: boxDecorationDefault(
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
-                child: CachedImageWidget(
-                  url: service.serviceImage,
-                  height: 50,
-                  width: 50,
-                  usePlaceholderIfUrlEmpty: false,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(70),
+                  child: CachedImageWidget(
+                    url: service.serviceImage,
+                    height: 45,
+                    width: 45,
+                    usePlaceholderIfUrlEmpty: false,
+                  ),
                 ),
               )),
           12.height,

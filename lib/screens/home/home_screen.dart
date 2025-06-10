@@ -6,6 +6,8 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final HomeScreenController homeScreenController = Get.find();
+  final ShopDashboardController shopController = Get.put(ShopDashboardController());
+  final DashboardController dashboardController = Get.find<DashboardController>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,93 @@ class HomeScreen extends StatelessWidget {
                           : Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const SlidersComponent(),
+                                Stack(
+                                  alignment: Alignment.bottomCenter,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        bottom: MediaQuery.sizeOf(context).height * 0.032,
+                                      ),
+                                      child: const SlidersComponent(),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 20
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          // TextField with icon and placeholder
+                                          Flexible(
+                                            flex: 9,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey.shade200,
+                                                borderRadius: BorderRadius.circular(20),
+                                              ),
+                                              child: TextField(
+                                                controller: shopController.pCont.searchCont,
+                                                decoration: InputDecoration(
+                                                  contentPadding: const EdgeInsets.symmetric(vertical: 14),
+                                                  prefixIcon: Container(
+                                                    margin: const EdgeInsets.only(left: 12, right: 8),
+                                                    decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(color: Colors.white),
+                                                    ),
+                                                    width: 28,
+                                                    height: 28,
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        color: Colors.grey, // Replace with your icon color
+                                                      ),
+                                                      child: Center(
+                                                        child: Container(
+                                                          width: 8,
+                                                          height: 8,
+                                                          decoration: const BoxDecoration(
+                                                            shape: BoxShape.circle,
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  hintText: "ProMaid Cleaning",
+                                                  hintStyle: const TextStyle(
+                                                    color: Colors.grey,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                  border: InputBorder.none,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            flex: 2,
+                                            child: InkWell(
+                                              onTap: () {
+                                                dashboardController.currentIndex(2);
+                                              },
+                                              child: Container(
+                                                padding: const EdgeInsets.all(8),
+                                                height: 48,
+                                                width: 48,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey.shade200,
+                                                  borderRadius: BorderRadius.circular(16)
+                                                ),
+                                                child: const Icon(Icons.search, color: Colors.grey),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+
                                 ChooseServiceComponents(),
                                 UpcomingAppointmentComponents(),
                                 ChoosePetSitterComponents(),

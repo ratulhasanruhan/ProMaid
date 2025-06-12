@@ -3,8 +3,8 @@ import '../../dashboard/dashboard_res_model.dart';
 import 'package:pawlly/utils/library.dart';
 
 void navigateToService(SystemService service, {dynamic arguments}) {
-  try {
     HomeScreenController hCont = Get.find();
+  try {
     hCont.init();
   } catch (e) {
     log('onChooseService Err: $e');
@@ -16,8 +16,8 @@ void navigateToService(SystemService service, {dynamic arguments}) {
     Get.to(() => BoardingServicesScreen(),
         arguments: arguments, duration: const Duration(milliseconds: 800));
   } else if (service.slug.contains(ServicesKeyConst.veterinary)) {
-    Get.to(() => VeterineryServiceScreen(),
-        arguments: arguments, duration: const Duration(milliseconds: 800));
+    hCont.goTo(VeterineryServiceScreen());
+    //Get.to(() => VeterineryServiceScreen(), arguments: arguments, duration: const Duration(milliseconds: 800));
   } else if (service.slug.contains(ServicesKeyConst.grooming)) {
     Get.to(() => GroomingScreen(),
         arguments: arguments, duration: const Duration(milliseconds: 800));

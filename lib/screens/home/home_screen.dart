@@ -9,46 +9,60 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      hideAppBar: true,
-      body: RefreshIndicator(
-        onRefresh: () async {
-          return await homeScreenController.getDashboardDetail(
-              isFromSwipRefresh: true);
-        },
-        child: Obx(
-          () => SnapHelperWidget(
-            future: homeScreenController.getDashboardDetailFuture.value,
-            initialData: homeScreenController
-                    .dashboardData.value.systemService.isEmpty
-                ? null
-                : DashboardRes(data: homeScreenController.dashboardData.value),
-            errorBuilder: (error) {
-              return NoDataWidget(
-                title: error,
-                retryText: locale.value.reload,
-                imageWidget: const ErrorStateWidget(),
-                onRetry: () {
-                  homeScreenController.init();
-                },
-              ).paddingSymmetric(horizontal: 16);
-            },
-            loadingWidget: const HomeScreenShimmer(showGreeting: true),
-            onSuccess: (dashboardData) {
-              return SingleChildScrollView(
-                padding: const EdgeInsets.only(bottom: 16),
-                physics: const AlwaysScrollableScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    32.height,
-                    GreetingsComponent(),
-                    16.height,
-                    Obx(
-                      () => homeScreenController.isLoading.value
-                          ? const HomeScreenShimmer()
-                          : Column(
+    return WillPopScope(
+      onWillPop: () async {
+        final canPop = homeScreenController.navKey.currentState?.canPop() ?? false;
+
+        if (canPop) {
+          homeScreenController.navKey.currentState?.pop();
+          return false; // prevent system back
+        }
+
+        return true; // allow system back (e.g., exit app or go to previous main page)
+      },
+      child: Navigator(
+        key: homeScreenController.navKey,
+        onGenerateInitialRoutes: (_,c) => [
+          MaterialPageRoute(builder: (_) => AppScaffold(
+            hideAppBar: true,
+            body: RefreshIndicator(
+              onRefresh: () async {
+                return await homeScreenController.getDashboardDetail(
+                    isFromSwipRefresh: true);
+              },
+              child: Obx(
+                    () => SnapHelperWidget(
+                  future: homeScreenController.getDashboardDetailFuture.value,
+                  initialData: homeScreenController
+                      .dashboardData.value.systemService.isEmpty
+                      ? null
+                      : DashboardRes(data: homeScreenController.dashboardData.value),
+                  errorBuilder: (error) {
+                    return NoDataWidget(
+                      title: error,
+                      retryText: locale.value.reload,
+                      imageWidget: const ErrorStateWidget(),
+                      onRetry: () {
+                        homeScreenController.init();
+                      },
+                    ).paddingSymmetric(horizontal: 16);
+                  },
+                  loadingWidget: const HomeScreenShimmer(showGreeting: true),
+                  onSuccess: (dashboardData) {
+                    return SingleChildScrollView(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          32.height,
+                          GreetingsComponent(),
+                          16.height,
+                          Obx(
+                                () => homeScreenController.isLoading.value
+                                ? const HomeScreenShimmer()
+                                : Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Stack(
@@ -62,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
-                                        horizontal: 20
+                                          horizontal: 20
                                       ),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,15 +132,15 @@ class HomeScreen extends StatelessWidget {
                                             flex: 2,
                                             child: InkWell(
                                               onTap: () {
-                                               // dashboardController.currentIndex(2);
+      
                                               },
                                               child: Container(
                                                 padding: const EdgeInsets.all(8),
                                                 height: 48,
                                                 width: 48,
                                                 decoration: BoxDecoration(
-                                                  color: Colors.grey.shade200,
-                                                  borderRadius: BorderRadius.circular(16)
+                                                    color: Colors.grey.shade200,
+                                                    borderRadius: BorderRadius.circular(16)
                                                 ),
                                                 child: const Icon(Icons.search, color: Colors.grey),
                                               ),
@@ -137,7 +151,6 @@ class HomeScreen extends StatelessWidget {
                                     )
                                   ],
                                 ),
-
                                 ChooseServiceComponents(),
                                 UpcomingAppointmentComponents(),
                                 ChoosePetSitterComponents(),
@@ -147,13 +160,16 @@ class HomeScreen extends StatelessWidget {
                                 BlogHomeComponent(),
                               ],
                             ),
-                    ),
-                  ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-        ),
+              ),
+            ),
+          )),
+        ],
       ),
     );
   }

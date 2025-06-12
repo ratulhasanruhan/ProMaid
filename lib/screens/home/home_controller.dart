@@ -21,6 +21,22 @@ class HomeScreenController extends GetxController {
               training: Training()))
       .obs;
 
+
+  final GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
+
+  void goTo(Widget page) {
+    navKey.currentState?.push(MaterialPageRoute(builder: (_) => page));
+  }
+
+  bool goBack() {
+    if (navKey.currentState?.canPop() ?? false) {
+      navKey.currentState?.pop();
+      return true;
+    }
+    return false;
+  }
+
+
   @override
   void onReady() {
     init();

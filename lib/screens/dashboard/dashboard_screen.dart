@@ -28,8 +28,10 @@ class DashboardScreen extends StatelessWidget {
       message: locale.value.pressBackAgainToExitApp,
       child: AppScaffold(
         hideAppBar: true,
-        body: Obx(() =>
-            dashboardController.screen[dashboardController.currentIndex.value]),
+        body: Obx(() =>IndexedStack(
+          index: dashboardController.currentIndex.value,
+          children: dashboardController.screen,
+        )),
         bottomNavBar: Obx(
           () => MotionTabBar(
             initialSelectedTab: 'Home',

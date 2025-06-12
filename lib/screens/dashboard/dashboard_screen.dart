@@ -28,14 +28,14 @@ class DashboardScreen extends StatelessWidget {
       message: locale.value.pressBackAgainToExitApp,
       child: AppScaffold(
         hideAppBar: true,
-        body: Obx(() =>IndexedStack(
-          index: dashboardController.currentIndex.value,
-          children: dashboardController.screen,
-        )),
+        body: Obx(() => IndexedStack(
+              index: dashboardController.currentIndex.value,
+              children: dashboardController.screen,
+            )),
         bottomNavBar: Obx(
           () => MotionTabBar(
             initialSelectedTab: 'Home',
-            tabBarColor: Color(0xFF0F165C),
+            tabBarColor: Color(0xFF0B0F59),
             tabIconColor: Colors.white,
             tabSelectedColor: Colors.white,
             tabIconSelectedColor: Color(0xFFFD6B22),
@@ -73,11 +73,9 @@ class DashboardScreen extends StatelessWidget {
             },
             labels: tabNames,
             icons: tabIcons,
-
           ).visible(!updateUi.value),
         ),
       ),
     );
   }
-
 }

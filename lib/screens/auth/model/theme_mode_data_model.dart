@@ -1,4 +1,3 @@
-
 class ThemeModeData {
   int id;
   String mode;

@@ -12,7 +12,9 @@ class GetUserProfileResponse {
   factory GetUserProfileResponse.fromJson(Map<String, dynamic> json) {
     return GetUserProfileResponse(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is Map ? UData.fromJson(json['data']) : UData(userSetting: UserSetting(), profile: Profile()),
+      data: json['data'] is Map
+          ? UData.fromJson(json['data'])
+          : UData(userSetting: UserSetting(), profile: Profile()),
       message: json['message'] is String ? json['message'] : "",
     );
   }
@@ -109,14 +111,20 @@ class UData {
       gender: json['gender'] is String ? json['gender'] : "",
       dateOfBirth: json['date_of_birth'] is String ? json['date_of_birth'] : "",
       isManager: json['is_manager'] is int ? json['is_manager'] : -1,
-      showInCalender: json['show_in_calender'] is int ? json['show_in_calender'] : -1,
-      emailVerifiedAt: json['email_verified_at'] is String ? json['email_verified_at'] : "",
+      showInCalender:
+          json['show_in_calender'] is int ? json['show_in_calender'] : -1,
+      emailVerifiedAt:
+          json['email_verified_at'] is String ? json['email_verified_at'] : "",
       avatar: json['avatar'] is String ? json['date_of_birth'] : "",
       isBanned: json['is_banned'] is int ? json['is_banned'] : -1,
       isSubscribe: json['is_subscribe'] is int ? json['is_subscribe'] : -1,
       status: json['status'] is int ? json['status'] : -1,
-      lastNotificationSeen: json['last_notification_seen'] is String ? json['last_notification_seen'] : "",
-      userSetting: json['user_setting'] is Map ? UserSetting.fromJson(json['user_setting']) : UserSetting(),
+      lastNotificationSeen: json['last_notification_seen'] is String
+          ? json['last_notification_seen']
+          : "",
+      userSetting: json['user_setting'] is Map
+          ? UserSetting.fromJson(json['user_setting'])
+          : UserSetting(),
       address: json['address'] is String ? json['address'] : "",
       userType: json['user_type'] is String ? json['user_type'] : "",
       createdAt: json['created_at'] is String ? json['created_at'] : "",
@@ -124,14 +132,22 @@ class UData {
       deletedAt: json['deleted_at'] is String ? json['deleted_at'] : "",
       aboutSelf: json['about_self'] is String ? json['about_self'] : "",
       expert: json['expert'] is String ? json['expert'] : "",
-      facebookLink: json['facebook_link'] is String ? json['facebook_link'] : "",
-      instagramLink: json['instagram_link'] is String ? json['instagram_link'] : "",
+      facebookLink:
+          json['facebook_link'] is String ? json['facebook_link'] : "",
+      instagramLink:
+          json['instagram_link'] is String ? json['instagram_link'] : "",
       twitterLink: json['twitter_link'] is String ? json['twitter_link'] : "",
-      dribbbleLink: json['dribbble_link'] is String ? json['dribbble_link'] : "",
+      dribbbleLink:
+          json['dribbble_link'] is String ? json['dribbble_link'] : "",
       fullName: json['full_name'] is String ? json['full_name'] : "",
-      profileImage: json['profile_image'] is String ? json['profile_image'] : "",
-      profile: json['profile'] is Map ? Profile.fromJson(json['profile']) : Profile(),
-      media: json['media'] is List ? List<Media>.from(json['media'].map((x) => Media.fromJson(x))) : [],
+      profileImage:
+          json['profile_image'] is String ? json['profile_image'] : "",
+      profile: json['profile'] is Map
+          ? Profile.fromJson(json['profile'])
+          : Profile(),
+      media: json['media'] is List
+          ? List<Media>.from(json['media'].map((x) => Media.fromJson(x)))
+          : [],
     );
   }
 
@@ -226,10 +242,13 @@ class Profile {
       id: json['id'] is int ? json['id'] : -1,
       aboutSelf: json['about_self'] is String ? json['about_self'] : "",
       expert: json['expert'] is String ? json['expert'] : "",
-      facebookLink: json['facebook_link'] is String ? json['facebook_link'] : "",
-      instagramLink: json['instagram_link'] is String ? json['instagram_link'] : "",
+      facebookLink:
+          json['facebook_link'] is String ? json['facebook_link'] : "",
+      instagramLink:
+          json['instagram_link'] is String ? json['instagram_link'] : "",
       twitterLink: json['twitter_link'] is String ? json['twitter_link'] : "",
-      dribbbleLink: json['dribbble_link'] is String ? json['dribbble_link'] : "",
+      dribbbleLink:
+          json['dribbble_link'] is String ? json['dribbble_link'] : "",
       userId: json['user_id'] is int ? json['user_id'] : -1,
       createdAt: json['created_at'] is String ? json['created_at'] : "",
       updatedAt: json['updated_at'] is String ? json['updated_at'] : "",
@@ -305,17 +324,23 @@ class Media {
       modelType: json['model_type'] is String ? json['model_type'] : "",
       modelId: json['model_id'] is int ? json['model_id'] : -1,
       uuid: json['uuid'] is String ? json['uuid'] : "",
-      collectionName: json['collection_name'] is String ? json['collection_name'] : "",
+      collectionName:
+          json['collection_name'] is String ? json['collection_name'] : "",
       name: json['name'] is String ? json['name'] : "",
       fileName: json['file_name'] is String ? json['file_name'] : "",
       mimeType: json['mime_type'] is String ? json['mime_type'] : "",
       disk: json['disk'] is String ? json['disk'] : "",
-      conversionsDisk: json['conversions_disk'] is String ? json['conversions_disk'] : "",
+      conversionsDisk:
+          json['conversions_disk'] is String ? json['conversions_disk'] : "",
       size: json['size'] is int ? json['size'] : -1,
       manipulations: json['manipulations'] is List ? json['manipulations'] : [],
-      customProperties: json['custom_properties'] is List ? json['custom_properties'] : [],
-      generatedConversions: json['generated_conversions'] is List ? json['generated_conversions'] : [],
-      responsiveImages: json['responsive_images'] is List ? json['responsive_images'] : [],
+      customProperties:
+          json['custom_properties'] is List ? json['custom_properties'] : [],
+      generatedConversions: json['generated_conversions'] is List
+          ? json['generated_conversions']
+          : [],
+      responsiveImages:
+          json['responsive_images'] is List ? json['responsive_images'] : [],
       orderColumn: json['order_column'] is int ? json['order_column'] : -1,
       createdAt: json['created_at'] is String ? json['created_at'] : "",
       updatedAt: json['updated_at'] is String ? json['updated_at'] : "",

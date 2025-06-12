@@ -3,6 +3,7 @@ import 'package:googleapis/calendar/v3.dart';
 import 'package:googleapis_auth/googleapis_auth.dart' as auth show AuthClient;
 import 'package:googleapis/calendar/v3.dart' as cal;
 import 'package:pawlly/utils/library.dart';
+
 GoogleSignInAccount? _currentUser;
 
 final GoogleSignIn _googleSignIn = GoogleSignIn(

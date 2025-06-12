@@ -14,7 +14,10 @@ class OrderListModel {
   factory OrderListModel.fromJson(Map<String, dynamic> json) {
     return OrderListModel(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<CartListData>.from(json['data'].map((x) => CartListData.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<CartListData>.from(
+              json['data'].map((x) => CartListData.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }

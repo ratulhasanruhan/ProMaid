@@ -12,7 +12,10 @@ class BreedRes {
   factory BreedRes.fromJson(Map<String, dynamic> json) {
     return BreedRes(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<BreedModel>.from(json['data'].map((x) => BreedModel.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<BreedModel>.from(
+              json['data'].map((x) => BreedModel.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }

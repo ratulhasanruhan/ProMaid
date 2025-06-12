@@ -14,7 +14,9 @@ class PetListRes {
   factory PetListRes.fromJson(Map<String, dynamic> json) {
     return PetListRes(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<PetData>.from(json['data'].map((x) => PetData.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<PetData>.from(json['data'].map((x) => PetData.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }
@@ -97,7 +99,10 @@ class PetData {
       createdBy: json['created_by'] is int ? json['created_by'] : -1,
       updatedBy: json['updated_by'] is int ? json['updated_by'] : -1,
       deletedBy: json['deleted_by'] is int ? json['deleted_by'] : -1,
-      petNotes: json['pet_notes'] is List ? List<NotePetModel>.from(json['pet_notes'].map((x) => NotePetModel.fromJson(x))) : [],
+      petNotes: json['pet_notes'] is List
+          ? List<NotePetModel>.from(
+              json['pet_notes'].map((x) => NotePetModel.fromJson(x)))
+          : [],
     );
   }
 

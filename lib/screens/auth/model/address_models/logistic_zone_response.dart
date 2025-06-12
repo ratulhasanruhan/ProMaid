@@ -14,7 +14,10 @@ class LogisticZoneResponse {
   factory LogisticZoneResponse.fromJson(Map<String, dynamic> json) {
     return LogisticZoneResponse(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<LogisticZoneData>.from(json['data'].map((x) => LogisticZoneData.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<LogisticZoneData>.from(
+              json['data'].map((x) => LogisticZoneData.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }
@@ -61,14 +64,25 @@ class LogisticZoneData {
       id: json['id'] is int ? json['id'] : -1,
       name: json['name'] is String ? json['name'] : "",
       logisticId: json['logistic_id'] is int ? json['logistic_id'] : -1,
-      logisticName: json['logistic_name'] is String ? json['logistic_name'] : "",
+      logisticName:
+          json['logistic_name'] is String ? json['logistic_name'] : "",
       countryId: json['country_id'] is int ? json['country_id'] : -1,
       stateId: json['state_id'] is int ? json['state_id'] : -1,
-      standardDeliveryCharge: json['standard_delivery_charge'] is num ? json['standard_delivery_charge'] : 0,
-      expressDeliveryCharge: json['express_delivery_charge'] is num ? json['express_delivery_charge'] : 0,
-      standardDeliveryTime: json['standard_delivery_time'] is String ? json['standard_delivery_time'] : "",
-      expressDeliveryTime: json['express_delivery_time'] is String ? json['express_delivery_time'] : "",
-      cities: json['cities'] is List ? List<CityData>.from(json['cities'].map((x) => CityData.fromJson(x))) : [],
+      standardDeliveryCharge: json['standard_delivery_charge'] is num
+          ? json['standard_delivery_charge']
+          : 0,
+      expressDeliveryCharge: json['express_delivery_charge'] is num
+          ? json['express_delivery_charge']
+          : 0,
+      standardDeliveryTime: json['standard_delivery_time'] is String
+          ? json['standard_delivery_time']
+          : "",
+      expressDeliveryTime: json['express_delivery_time'] is String
+          ? json['express_delivery_time']
+          : "",
+      cities: json['cities'] is List
+          ? List<CityData>.from(json['cities'].map((x) => CityData.fromJson(x)))
+          : [],
     );
   }
 
@@ -160,7 +174,8 @@ class Pivot {
 
   factory Pivot.fromJson(Map<String, dynamic> json) {
     return Pivot(
-      logisticZoneId: json['logistic_zone_id'] is int ? json['logistic_zone_id'] : -1,
+      logisticZoneId:
+          json['logistic_zone_id'] is int ? json['logistic_zone_id'] : -1,
       cityId: json['city_id'] is int ? json['city_id'] : -1,
     );
   }

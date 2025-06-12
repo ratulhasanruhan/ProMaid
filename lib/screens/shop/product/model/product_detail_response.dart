@@ -17,9 +17,14 @@ class ProductDetailRes {
 
   factory ProductDetailRes.fromJson(Map<String, dynamic> json) {
     return ProductDetailRes(
-      data: json['data'] is Map ? ProductItemData.fromJson(json['data']) : ProductItemData(inWishlist: false.obs),
+      data: json['data'] is Map
+          ? ProductItemData.fromJson(json['data'])
+          : ProductItemData(inWishlist: false.obs),
       status: json['status'] is bool ? json['status'] : false,
-      relatedProduct: json['data'] is List ? List<ProductItemData>.from(json['data'].map((x) => ProductItemData.fromJson(x))) : [],
+      relatedProduct: json['data'] is List
+          ? List<ProductItemData>.from(
+              json['data'].map((x) => ProductItemData.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }

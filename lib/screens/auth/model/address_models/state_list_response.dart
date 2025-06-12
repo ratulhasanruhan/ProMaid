@@ -12,7 +12,9 @@ class StateListResponse {
   factory StateListResponse.fromJson(Map<String, dynamic> json) {
     return StateListResponse(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<StateData>.from(json['data'].map((x) => StateData.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<StateData>.from(json['data'].map((x) => StateData.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }

@@ -4,5 +4,9 @@ class ProductStatusModel {
   String isDeal;
   String productCategoryID;
 
-  ProductStatusModel({this.isFeatured = "", this.isBestSeller = "", this.isDeal = "", this.productCategoryID = ""});
+  ProductStatusModel(
+      {this.isFeatured = "",
+      this.isBestSeller = "",
+      this.isDeal = "",
+      this.productCategoryID = ""});
 }

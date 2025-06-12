@@ -22,10 +22,14 @@ import 'colors.dart';
 import 'constants.dart';
 import 'local_storage.dart';
 
-String? get fontFamilyFontWeight600 => GoogleFonts.beVietnamPro(fontWeight: FontWeight.w600).fontFamily;
-String? get fontFamilyFontBold => GoogleFonts.beVietnamPro(fontWeight: FontWeight.bold).fontFamily;
-String? get fontFamilyFontWeight300 => GoogleFonts.beVietnamPro(fontWeight: FontWeight.w300).fontFamily;
-String? get fontFamilyFontWeight400 => GoogleFonts.beVietnamPro(fontWeight: FontWeight.w400).fontFamily;
+String? get fontFamilyFontWeight600 =>
+    GoogleFonts.beVietnamPro(fontWeight: FontWeight.w600).fontFamily;
+String? get fontFamilyFontBold =>
+    GoogleFonts.beVietnamPro(fontWeight: FontWeight.bold).fontFamily;
+String? get fontFamilyFontWeight300 =>
+    GoogleFonts.beVietnamPro(fontWeight: FontWeight.w300).fontFamily;
+String? get fontFamilyFontWeight400 =>
+    GoogleFonts.beVietnamPro(fontWeight: FontWeight.w400).fontFamily;
 
 Widget get commonDivider => Column(
       children: [
@@ -33,7 +37,9 @@ Widget get commonDivider => Column(
         Divider(
           indent: 3,
           height: 1,
-          color: isDarkMode.value ? borderColor.withOpacity(0.1) : borderColor.withOpacity(0.5),
+          color: isDarkMode.value
+              ? borderColor.withOpacity(0.1)
+              : borderColor.withOpacity(0.5),
         ).paddingSymmetric(horizontal: 16),
         // 12.height,
       ],
@@ -45,7 +51,9 @@ Widget get bottomSheetDivider => Column(
         Divider(
           indent: 3,
           height: 0,
-          color: isDarkMode.value ? borderColor.withOpacity(0.2) : borderColor.withOpacity(0.5),
+          color: isDarkMode.value
+              ? borderColor.withOpacity(0.2)
+              : borderColor.withOpacity(0.5),
         ),
         20.height,
       ],
@@ -54,13 +62,17 @@ Widget get bottomSheetDivider => Column(
 void handleRate() async {
   if (isAndroid) {
     if (getStringAsync(APP_PLAY_STORE_URL).isNotEmpty) {
-      commonLaunchUrl(getStringAsync(APP_PLAY_STORE_URL), launchMode: LaunchMode.externalApplication);
+      commonLaunchUrl(getStringAsync(APP_PLAY_STORE_URL),
+          launchMode: LaunchMode.externalApplication);
     } else {
-      commonLaunchUrl('${getSocialMediaLink(LinkProvider.PLAY_STORE)}${await getPackageName()}', launchMode: LaunchMode.externalApplication);
+      commonLaunchUrl(
+          '${getSocialMediaLink(LinkProvider.PLAY_STORE)}${await getPackageName()}',
+          launchMode: LaunchMode.externalApplication);
     }
   } else if (isIOS) {
     if (getStringAsync(APP_APPSTORE_URL).isNotEmpty) {
-      commonLaunchUrl(getStringAsync(APP_APPSTORE_URL), launchMode: LaunchMode.externalApplication);
+      commonLaunchUrl(getStringAsync(APP_APPSTORE_URL),
+          launchMode: LaunchMode.externalApplication);
     }
   }
 }
@@ -93,7 +105,8 @@ void chnageSystemNavigationTheme() {
     textPrimaryColorGlobal = Colors.white;
     textSecondaryColorGlobal = Colors.white70;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Get.context != null ? scaffoldDarkColor : transparentColor,
+      systemNavigationBarColor:
+          Get.context != null ? scaffoldDarkColor : transparentColor,
       systemNavigationBarDividerColor: Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
@@ -110,22 +123,51 @@ void chnageSystemNavigationTheme() {
 
 List<LanguageDataModel> languageList() {
   return [
-    LanguageDataModel(id: 1, name: 'English', languageCode: 'en', fullLanguageCode: 'en-US', flag: Assets.flagsIcUs),
-    LanguageDataModel(id: 2, name: 'Hindi', languageCode: 'hi', fullLanguageCode: 'hi-IN', flag: Assets.flagsIcIn),
-    LanguageDataModel(id: 3, name: 'Arabic', languageCode: 'ar', fullLanguageCode: 'ar-AR', flag: Assets.flagsIcAr),
-    LanguageDataModel(id: 4, name: 'French', languageCode: 'fr', fullLanguageCode: 'fr-FR', flag: Assets.flagsIcFr),
-    LanguageDataModel(id: 4, name: 'German', languageCode: 'de', fullLanguageCode: 'de-DE', flag: Assets.flagsIcDe),
+    LanguageDataModel(
+        id: 1,
+        name: 'English',
+        languageCode: 'en',
+        fullLanguageCode: 'en-US',
+        flag: Assets.flagsIcUs),
+    LanguageDataModel(
+        id: 2,
+        name: 'Hindi',
+        languageCode: 'hi',
+        fullLanguageCode: 'hi-IN',
+        flag: Assets.flagsIcIn),
+    LanguageDataModel(
+        id: 3,
+        name: 'Arabic',
+        languageCode: 'ar',
+        fullLanguageCode: 'ar-AR',
+        flag: Assets.flagsIcAr),
+    LanguageDataModel(
+        id: 4,
+        name: 'French',
+        languageCode: 'fr',
+        fullLanguageCode: 'fr-FR',
+        flag: Assets.flagsIcFr),
+    LanguageDataModel(
+        id: 4,
+        name: 'German',
+        languageCode: 'de',
+        fullLanguageCode: 'de-DE',
+        flag: Assets.flagsIcDe),
   ];
 }
 
-Widget appCloseIconButton(BuildContext context, {required void Function() onPressed, double size = 12}) {
+Widget appCloseIconButton(BuildContext context,
+    {required void Function() onPressed, double size = 12}) {
   return IconButton(
     iconSize: size,
     padding: EdgeInsets.zero,
     onPressed: onPressed,
     icon: Container(
       padding: EdgeInsets.all(size - 8),
-      decoration: boxDecorationDefault(color: context.cardColor, borderRadius: BorderRadius.circular(size - 4), border: Border.all(color: secondaryTextColor)),
+      decoration: boxDecorationDefault(
+          color: context.cardColor,
+          borderRadius: BorderRadius.circular(size - 4),
+          border: Border.all(color: secondaryTextColor)),
       child: Icon(
         Icons.close_rounded,
         size: size,
@@ -134,7 +176,11 @@ Widget appCloseIconButton(BuildContext context, {required void Function() onPres
   );
 }
 
-Widget commonLeadingWid({required String imgPath, required IconData icon, Color? color, double size = 20}) {
+Widget commonLeadingWid(
+    {required String imgPath,
+    required IconData icon,
+    Color? color,
+    double size = 20}) {
   return Image.asset(
     imgPath,
     width: size,
@@ -149,7 +195,8 @@ Widget commonLeadingWid({required String imgPath, required IconData icon, Color?
   );
 }
 
-Future<void> commonLaunchUrl(String address, {LaunchMode launchMode = LaunchMode.inAppWebView}) async {
+Future<void> commonLaunchUrl(String address,
+    {LaunchMode launchMode = LaunchMode.inAppWebView}) async {
   await launchUrl(Uri.parse(address), mode: launchMode).catchError((e) {
     toast('${locale.value.invalidUrl}: $address');
   });
@@ -164,16 +211,19 @@ void viewFiles(String url) {
 void launchCall(String? url) {
   if (url.validate().isNotEmpty) {
     if (isIOS) {
-      commonLaunchUrl('tel://${url!}', launchMode: LaunchMode.externalApplication);
+      commonLaunchUrl('tel://${url!}',
+          launchMode: LaunchMode.externalApplication);
     } else {
-      commonLaunchUrl('tel:${url!}', launchMode: LaunchMode.externalApplication);
+      commonLaunchUrl('tel:${url!}',
+          launchMode: LaunchMode.externalApplication);
     }
   }
 }
 
 void launchMap(String? url) {
   if (url.validate().isNotEmpty) {
-    commonLaunchUrl(Constants.googleMapPrefix + url!, launchMode: LaunchMode.externalApplication);
+    commonLaunchUrl(Constants.googleMapPrefix + url!,
+        launchMode: LaunchMode.externalApplication);
   }
 }
 
@@ -209,7 +259,8 @@ extension DateData on String {
 
   String get dateInMMMMDyyyyFormat {
     try {
-      return DateFormat(DateFormatConst.MMMM_D_yyyy).format(dateInyyyyMMddHHmmFormat);
+      return DateFormat(DateFormatConst.MMMM_D_yyyy)
+          .format(dateInyyyyMMddHHmmFormat);
     } catch (e) {
       return this;
     }
@@ -217,7 +268,8 @@ extension DateData on String {
 
   String get dateInEEEEDMMMMAtHHmmAmPmFormat {
     try {
-      return DateFormat(DateFormatConst.EEEE_D_MMMM_At_HH_mm_a).format(dateInyyyyMMddHHmmFormat);
+      return DateFormat(DateFormatConst.EEEE_D_MMMM_At_HH_mm_a)
+          .format(dateInyyyyMMddHHmmFormat);
     } catch (e) {
       return this;
     }
@@ -225,7 +277,8 @@ extension DateData on String {
 
   String get dateInDMMMMyyyyFormat {
     try {
-      return DateFormat(DateFormatConst.D_MMMM_yyyy).format(dateInyyyyMMddHHmmFormat);
+      return DateFormat(DateFormatConst.D_MMMM_yyyy)
+          .format(dateInyyyyMMddHHmmFormat);
     } catch (e) {
       return this;
     }
@@ -233,7 +286,8 @@ extension DateData on String {
 
   String get dateInDMMMyyyyFormat {
     try {
-      return DateFormat(DateFormatConst.D_MMM_yyyy).format(dateInyyyyMMddHHmmFormat);
+      return DateFormat(DateFormatConst.D_MMM_yyyy)
+          .format(dateInyyyyMMddHHmmFormat);
     } catch (e) {
       return this;
     }
@@ -257,7 +311,8 @@ extension DateData on String {
 
   String get dateInMMMMDyyyyAtHHmmAmPmFormat {
     try {
-      return DateFormat(DateFormatConst.MMMM_D_yyyy_At_HH_mm_a).format(dateInyyyyMMddHHmmFormat);
+      return DateFormat(DateFormatConst.MMMM_D_yyyy_At_HH_mm_a)
+          .format(dateInyyyyMMddHHmmFormat);
     } catch (e) {
       return this;
     }
@@ -265,7 +320,8 @@ extension DateData on String {
 
   String get dateInddMMMyyyyHHmmAmPmFormat {
     try {
-      return DateFormat(DateFormatConst.dd_MMM_yyyy_HH_mm_a).format(dateInyyyyMMddHHmmFormat);
+      return DateFormat(DateFormatConst.dd_MMM_yyyy_HH_mm_a)
+          .format(dateInyyyyMMddHHmmFormat);
     } catch (e) {
       try {
         return "$dateInyyyyMMddHHmmFormat";
@@ -280,7 +336,8 @@ extension DateData on String {
       return DateFormat(DateFormatConst.yyyy_MM_dd_HH_mm).parse(this);
     } catch (e) {
       try {
-        return DateFormat(DateFormatConst.yyyy_MM_dd_HH_mm).parse(DateTime.parse(this).toString());
+        return DateFormat(DateFormatConst.yyyy_MM_dd_HH_mm)
+            .parse(DateTime.parse(this).toString());
       } catch (e) {
         log('dateInyyyyMMddHHmmFormat Error in $this: $e');
         return DateTime.now();
@@ -299,14 +356,16 @@ extension DateData on String {
 
   String get timeInHHmmAmPmFormat {
     try {
-      return DateFormat(DateFormatConst.HH_mm12Hour).format(dateInyyyyMMddHHmmFormat);
+      return DateFormat(DateFormatConst.HH_mm12Hour)
+          .format(dateInyyyyMMddHHmmFormat);
     } catch (e) {
       return this;
     }
   }
 
   TimeOfDay get timeOfDay24Format {
-    return TimeOfDay.fromDateTime(DateFormat(DateFormatConst.yyyy_MM_dd_HH_mm).parse(this));
+    return TimeOfDay.fromDateTime(
+        DateFormat(DateFormatConst.yyyy_MM_dd_HH_mm).parse(this));
   }
 
   /* String get dateIndmmyhmaFormat {
@@ -356,10 +415,12 @@ extension DateData on String {
 
       String formattedDuration = '';
       if (hours > 0) {
-        formattedDuration += "$hours ${showFullTitleHoursMinutes ? 'hour' : 'hr'} ";
+        formattedDuration +=
+            "$hours ${showFullTitleHoursMinutes ? 'hour' : 'hr'} ";
       }
       if (minutes > 0) {
-        formattedDuration += '$minutes ${showFullTitleHoursMinutes ? 'minute' : 'min'}';
+        formattedDuration +=
+            '$minutes ${showFullTitleHoursMinutes ? 'minute' : 'min'}';
       }
       return formattedDuration.trim();
     } catch (e) {
@@ -463,7 +524,8 @@ extension TimeExtension on TimeOfDay {
   /// Returns a string representing the formatted time.
   String formatTimeHHmm24Hour() {
     final timeIn24Hour = DateFormat(DateFormatConst.HH_mm24Hour);
-    final tempDateTime = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, hour, minute);
+    final tempDateTime = DateTime(DateTime.now().year, DateTime.now().month,
+        DateTime.now().day, hour, minute);
     return timeIn24Hour.format(tempDateTime);
   }
 
@@ -472,23 +534,50 @@ extension TimeExtension on TimeOfDay {
   /// Returns a string representing the formatted time.
   String formatTimeHHmmAMPM() {
     final timeInAMPM = DateFormat(DateFormatConst.HH_mm12Hour);
-    final tempDateTime = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, hour, minute);
+    final tempDateTime = DateTime(DateTime.now().year, DateTime.now().month,
+        DateTime.now().day, hour, minute);
     return timeInAMPM.format(tempDateTime);
   }
 }
 
-TextStyle get appButtonTextStyleGray => secondaryTextStyle(color: secondaryColor, size: 14, fontFamily: GoogleFonts.beVietnamPro(fontWeight: FontWeight.w500).fontFamily);
-TextStyle get appButtonTextStyleWhite => secondaryTextStyle(color: Colors.white, size: 14, fontFamily: GoogleFonts.beVietnamPro(fontWeight: FontWeight.w600).fontFamily);
-TextStyle get appButtonPrimaryColorText => secondaryTextStyle(color: primaryColor, fontFamily: GoogleFonts.beVietnamPro(fontWeight: FontWeight.w500).fontFamily);
-TextStyle get appButtonFontColorText => secondaryTextStyle(color: Colors.grey, size: 14, fontFamily: GoogleFonts.beVietnamPro(fontWeight: FontWeight.w500).fontFamily);
+TextStyle get appButtonTextStyleGray => secondaryTextStyle(
+    color: secondaryColor,
+    size: 14,
+    fontFamily:
+        GoogleFonts.beVietnamPro(fontWeight: FontWeight.w500).fontFamily);
+TextStyle get appButtonTextStyleWhite => secondaryTextStyle(
+    color: Colors.white,
+    size: 14,
+    fontFamily:
+        GoogleFonts.beVietnamPro(fontWeight: FontWeight.w600).fontFamily);
+TextStyle get appButtonPrimaryColorText => secondaryTextStyle(
+    color: primaryColor,
+    fontFamily:
+        GoogleFonts.beVietnamPro(fontWeight: FontWeight.w500).fontFamily);
+TextStyle get appButtonFontColorText => secondaryTextStyle(
+    color: Colors.grey,
+    size: 14,
+    fontFamily:
+        GoogleFonts.beVietnamPro(fontWeight: FontWeight.w500).fontFamily);
 
-InputDecoration inputDecoration(BuildContext context, {Widget? prefixIcon, BoxConstraints? prefixIconConstraints, Widget? suffixIcon, String? labelText, String? hintText, double? borderRadius, bool? filled, Color? fillColor}) {
+InputDecoration inputDecoration(BuildContext context,
+    {Widget? prefixIcon,
+    BoxConstraints? prefixIconConstraints,
+    Widget? suffixIcon,
+    String? labelText,
+    String? hintText,
+    double? borderRadius,
+    bool? filled,
+    Color? fillColor}) {
   return InputDecoration(
-    contentPadding: const EdgeInsets.only(left: 12, bottom: 10, top: 10, right: 10),
+    contentPadding:
+        const EdgeInsets.only(left: 12, bottom: 10, top: 10, right: 10),
     labelText: labelText,
     hintText: hintText,
-    hintStyle: secondaryTextStyle(size: 12, fontFamily: fontFamilyFontWeight300),
-    labelStyle: secondaryTextStyle(size: 12, fontFamily: fontFamilyFontWeight300),
+    hintStyle:
+        secondaryTextStyle(size: 12, fontFamily: fontFamilyFontWeight300),
+    labelStyle:
+        secondaryTextStyle(size: 12, fontFamily: fontFamilyFontWeight300),
     alignLabelWithHint: true,
     prefixIcon: prefixIcon,
     prefixIconConstraints: prefixIconConstraints,
@@ -524,13 +613,23 @@ InputDecoration inputDecoration(BuildContext context, {Widget? prefixIcon, BoxCo
   );
 }
 
-InputDecoration inputDecorationWithOutBorder(BuildContext context, {Widget? prefixIcon, Widget? suffixIcon, String? labelText, String? hintText, double? borderRadius, bool? filled, Color? fillColor}) {
+InputDecoration inputDecorationWithOutBorder(BuildContext context,
+    {Widget? prefixIcon,
+    Widget? suffixIcon,
+    String? labelText,
+    String? hintText,
+    double? borderRadius,
+    bool? filled,
+    Color? fillColor}) {
   return InputDecoration(
-    contentPadding: const EdgeInsets.only(left: 12, bottom: 10, top: 10, right: 10),
+    contentPadding:
+        const EdgeInsets.only(left: 12, bottom: 10, top: 10, right: 10),
     labelText: labelText,
     hintText: hintText,
-    hintStyle: secondaryTextStyle(size: 12, fontFamily: fontFamilyFontWeight300),
-    labelStyle: secondaryTextStyle(size: 12, fontFamily: fontFamilyFontWeight300),
+    hintStyle:
+        secondaryTextStyle(size: 12, fontFamily: fontFamilyFontWeight300),
+    labelStyle:
+        secondaryTextStyle(size: 12, fontFamily: fontFamilyFontWeight300),
     alignLabelWithHint: true,
     prefixIcon: prefixIcon,
     suffixIcon: suffixIcon,
@@ -608,7 +707,8 @@ Widget backButton({Object? result}) {
     onPressed: () {
       Get.back(result: result);
     },
-    icon: const Icon(Icons.arrow_back_ios_new_outlined, color: Colors.grey, size: 20),
+    icon: const Icon(Icons.arrow_back_ios_new_outlined,
+        color: Colors.grey, size: 20),
   );
 }
 
@@ -675,7 +775,8 @@ extension StrEtx on String {
       fit: fit ?? BoxFit.cover,
       color: color ?? (isDarkMode.value ? Colors.white : darkGray),
       errorBuilder: (context, error, stackTrace) {
-        return Image.asset(Assets.iconsIcNoPhoto, height: size ?? 14, width: size ?? 14);
+        return Image.asset(Assets.iconsIcNoPhoto,
+            height: size ?? 14, width: size ?? 14);
       },
     );
   }
@@ -704,8 +805,10 @@ void doIfLoggedIn(BuildContext context, VoidCallback callback) async {
   }
 }
 
-void showNewUpdateDialog(BuildContext context, {required int currentAppVersionCode}) async {
-  bool canClose = currentAppVersionCode >= appConfigs.value.minimumForceUpdateCode;
+void showNewUpdateDialog(BuildContext context,
+    {required int currentAppVersionCode}) async {
+  bool canClose =
+      currentAppVersionCode >= appConfigs.value.minimumForceUpdateCode;
   showInDialog(
     context,
     contentPadding: EdgeInsets.zero,
@@ -721,8 +824,11 @@ void showNewUpdateDialog(BuildContext context, {required int currentAppVersionCo
 
 Future<void> showForceUpdateDialog(BuildContext context) async {
   getPackageInfo().then((value) {
-    if (isAndroid && appConfigs.value.latestVersionUpdateCode > value.versionCode.validate().toInt()) {
-      showNewUpdateDialog(context, currentAppVersionCode: value.versionCode.validate().toInt());
+    if (isAndroid &&
+        appConfigs.value.latestVersionUpdateCode >
+            value.versionCode.validate().toInt()) {
+      showNewUpdateDialog(context,
+          currentAppVersionCode: value.versionCode.validate().toInt());
     }
   });
 }
@@ -742,25 +848,40 @@ Color getRatingColor(int rating) {
 Widget actionsWidget({required Widget widget, VoidCallback? onTap}) {
   return Container(
     padding: const EdgeInsets.all(8),
-    decoration: boxDecorationWithShadow(boxShape: BoxShape.circle, backgroundColor: cardColor),
+    decoration: boxDecorationWithShadow(
+        boxShape: BoxShape.circle, backgroundColor: cardColor),
     child: widget,
   ).onTap(() {
     onTap?.call();
-  }, highlightColor: Colors.transparent, splashColor: Colors.transparent, hoverColor: Colors.transparent);
+  },
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      hoverColor: Colors.transparent);
 }
 
-Widget detailWidget({required String title, required String value, Color? textColor, TextStyle? textStyle}) {
+Widget detailWidget(
+    {required String title,
+    required String value,
+    Color? textColor,
+    TextStyle? textStyle}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(title, style: secondaryTextStyle()).expand(),
-      Text(value, textAlign: TextAlign.right, style: textStyle ?? primaryTextStyle(size: 12, color: textColor)).expand(),
+      Text(value,
+              textAlign: TextAlign.right,
+              style: textStyle ?? primaryTextStyle(size: 12, color: textColor))
+          .expand(),
     ],
   ).paddingBottom(10).visible(value.isNotEmpty);
 }
 
-Widget detailWidgetPrice({required String title, required num value, Color? textColor, bool isSemiBoldText = false}) {
+Widget detailWidgetPrice(
+    {required String title,
+    required num value,
+    Color? textColor,
+    bool isSemiBoldText = false}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [

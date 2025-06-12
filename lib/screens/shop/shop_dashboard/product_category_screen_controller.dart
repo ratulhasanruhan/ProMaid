@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pawlly/utils/library.dart';
+
 class ProductCategoryScreenController extends GetxController {
   Rx<Future<List<CategoryData>>> future = Future(() => <CategoryData>[]).obs;
   RxBool isLoading = false.obs;

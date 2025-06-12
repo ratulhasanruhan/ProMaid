@@ -16,7 +16,10 @@ class ProductListResponse {
   factory ProductListResponse.fromJson(Map<String, dynamic> json) {
     return ProductListResponse(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<ProductItemData>.from(json['data'].map((x) => ProductItemData.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<ProductItemData>.from(
+              json['data'].map((x) => ProductItemData.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }
@@ -132,32 +135,54 @@ class ProductItemData {
       userId: json['user_id'] is int ? json['user_id'] : -1,
       productId: json['product_id'] is int ? json['product_id'] : -1,
       productName: json['product_name'] is String ? json['product_name'] : "",
-      productDescription: json['product_description'] is String ? json['product_description'] : "",
-      productImage: json['product_image'] is String ? json['product_image'] : "",
-      category: json['category'] is List ? List<Category>.from(json['category'].map((x) => Category.fromJson(x))) : [],
+      productDescription: json['product_description'] is String
+          ? json['product_description']
+          : "",
+      productImage:
+          json['product_image'] is String ? json['product_image'] : "",
+      category: json['category'] is List
+          ? List<Category>.from(
+              json['category'].map((x) => Category.fromJson(x)))
+          : [],
       brandId: json['brand_id'] is int ? json['brand_id'] : -1,
       brandName: json['brand_name'] is String ? json['brand_name'] : "",
       unitId: json['unit_id'] is int ? json['unit_id'] : -1,
       unitName: json['unit_name'] is String ? json['unit_name'] : "",
-      shortDescription: json['short_description'] is String ? json['short_description'] : "",
+      shortDescription:
+          json['short_description'] is String ? json['short_description'] : "",
       description: json['description'] is String ? json['description'] : "",
       minPrice: json['min_price'] is num ? json['min_price'] : 0,
       maxPrice: json['max_price'] is num ? json['max_price'] : 0,
       discountValue: json['discount_value'] is num ? json['discount_value'] : 0,
-      discountType: json['discount_type'] is String ? json['discount_type'] : "",
-      minDiscountedProductAmount: json['min_discounted_product_amount'] is num ? json['min_discounted_product_amount'] : 0,
-      maxDiscountedProductAmount: json['max_discounted_product_amount'] is num ? json['max_discounted_product_amount'] : 0,
-      discountStartDate: json['discount_start_date'] is String ? json['discount_start_date'] : "",
-      discountEndDate: json['discount_end_date'] is String ? json['discount_end_date'] : "",
+      discountType:
+          json['discount_type'] is String ? json['discount_type'] : "",
+      minDiscountedProductAmount: json['min_discounted_product_amount'] is num
+          ? json['min_discounted_product_amount']
+          : 0,
+      maxDiscountedProductAmount: json['max_discounted_product_amount'] is num
+          ? json['max_discounted_product_amount']
+          : 0,
+      discountStartDate: json['discount_start_date'] is String
+          ? json['discount_start_date']
+          : "",
+      discountEndDate:
+          json['discount_end_date'] is String ? json['discount_end_date'] : "",
       sellTarget: json['sell_target'],
       stockQty: json['stock_qty'] is int ? json['stock_qty'] : -1,
       status: json['status'] is int ? json['status'] : -1,
-      minPurchaseQty: json['min_purchase_qty'] is int ? json['min_purchase_qty'] : -1,
-      maxPurchaseQty: json['max_purchase_qty'] is int ? json['max_purchase_qty'] : -1,
+      minPurchaseQty:
+          json['min_purchase_qty'] is int ? json['min_purchase_qty'] : -1,
+      maxPurchaseQty:
+          json['max_purchase_qty'] is int ? json['max_purchase_qty'] : -1,
       hasVariation: json['has_variation'] is int ? json['has_variation'] : -1,
       rating: json['rating'] is num ? json['rating'] : 0,
-      variationData: json['variation_data'] is List ? List<VariationData>.from(json['variation_data'].map((x) => VariationData.fromJson(x))) : [],
-      inWishlist: json['in_wishlist'] is int ? (json['in_wishlist'] == 1).obs : false.obs,
+      variationData: json['variation_data'] is List
+          ? List<VariationData>.from(
+              json['variation_data'].map((x) => VariationData.fromJson(x)))
+          : [],
+      inWishlist: json['in_wishlist'] is int
+          ? (json['in_wishlist'] == 1).obs
+          : false.obs,
       ratingCount: json['rating_count'] is int ? json['rating_count'] : -1,
       hasWarranty: json['has_warranty'] is int ? json['has_warranty'] : -1,
       createdBy: json['created_by'],
@@ -166,8 +191,14 @@ class ProductItemData {
       createdAt: json['created_at'] is String ? json['created_at'] : "",
       updatedAt: json['updated_at'] is String ? json['updated_at'] : "",
       deletedAt: json['deleted_at'],
-      productGallaryData: json['product_gallary'] != null ? List<String>.from(json['product_gallary']) : null,
-      productReview: json['product_review'] != null ? (json['product_review'] as List).map((i) => ProductReviewDataModel.fromJson(i)).toList() : null,
+      productGallaryData: json['product_gallary'] != null
+          ? List<String>.from(json['product_gallary'])
+          : null,
+      productReview: json['product_review'] != null
+          ? (json['product_review'] as List)
+              .map((i) => ProductReviewDataModel.fromJson(i))
+              .toList()
+          : null,
       soldBy: json['sold_by'] is String ? json['sold_by'] : "",
     );
   }
@@ -323,13 +354,22 @@ class VariationData {
       sku: json['sku'] is String ? json['sku'] : "",
       code: json['code'] is String ? json['code'] : "",
       locationId: json['location_id'] is int ? json['location_id'] : -1,
-      productStockQty: json['product_stock_qty'] is int ? json['product_stock_qty'] : -1,
-      isStockAvaible: json['is_stock_avaible'] is int ? json['is_stock_avaible'] : -1,
-      combination: json['combination'] is List ? List<Combination>.from(json['combination'].map((x) => Combination.fromJson(x))) : [],
+      productStockQty:
+          json['product_stock_qty'] is int ? json['product_stock_qty'] : -1,
+      isStockAvaible:
+          json['is_stock_avaible'] is int ? json['is_stock_avaible'] : -1,
+      combination: json['combination'] is List
+          ? List<Combination>.from(
+              json['combination'].map((x) => Combination.fromJson(x)))
+          : [],
       productAmount: json['product_amount'] is num ? json['product_amount'] : 0,
       inCart: json['in_cart'] is int ? (json['in_cart'] == 1).obs : false.obs,
-      taxIncludeProductPrice: json['tax_include_product_price'] is num ? json['tax_include_product_price'] : 0,
-      discountedProductPrice: json['discounted_product_price'] is num ? json['discounted_product_price'] : 0,
+      taxIncludeProductPrice: json['tax_include_product_price'] is num
+          ? json['tax_include_product_price']
+          : 0,
+      discountedProductPrice: json['discounted_product_price'] is num
+          ? json['discounted_product_price']
+          : 0,
     );
   }
 
@@ -367,9 +407,15 @@ class Combination {
   factory Combination.fromJson(Map<String, dynamic> json) {
     return Combination(
       id: json['id'] is int ? json['id'] : -1,
-      productVariationType: json['product_variation_type'] is String ? json['product_variation_type'] : "",
-      productVariationName: json['product_variation_name'] is String ? json['product_variation_name'] : "",
-      productVariationValue: json['product_variation_value'] is String ? json['product_variation_value'] : "",
+      productVariationType: json['product_variation_type'] is String
+          ? json['product_variation_type']
+          : "",
+      productVariationName: json['product_variation_name'] is String
+          ? json['product_variation_name']
+          : "",
+      productVariationValue: json['product_variation_value'] is String
+          ? json['product_variation_value']
+          : "",
     );
   }
 

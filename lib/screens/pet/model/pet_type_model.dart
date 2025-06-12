@@ -13,7 +13,8 @@ class PetTypeRes {
     return PetTypeRes(
       status: json['status'] is bool ? json['status'] : false,
       data: json['data'] is List
-          ? List<ChoosePetModel>.from(json['data'].map((x) => ChoosePetModel.fromJson(x)))
+          ? List<ChoosePetModel>.from(
+              json['data'].map((x) => ChoosePetModel.fromJson(x)))
           : [],
       message: json['message'] is String ? json['message'] : "",
     );

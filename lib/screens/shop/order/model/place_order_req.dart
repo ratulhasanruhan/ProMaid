@@ -26,15 +26,25 @@ class PlaceOrderReq {
   factory PlaceOrderReq.fromJson(Map<String, dynamic> json) {
     return PlaceOrderReq(
       locationId: json['location_id'] is int ? json['location_id'] : -1,
-      shippingAddressId: json['shipping_address_id'] is int ? json['shipping_address_id'] : -1,
-      billingAddressId: json['billing_address_id'] is int ? json['billing_address_id'] : -1,
+      shippingAddressId:
+          json['shipping_address_id'] is int ? json['shipping_address_id'] : -1,
+      billingAddressId:
+          json['billing_address_id'] is int ? json['billing_address_id'] : -1,
       phone: json['phone'] is String ? json['phone'] : "",
-      alternativePhone: json['alternative_phone'] is String ? json['alternative_phone'] : "",
-      chosenLogisticZoneId: json['chosen_logistic_zone_id'] is int ? json['chosen_logistic_zone_id'] : -1,
-      shippingDeliveryType: json['shipping_delivery_type'] is String ? json['shipping_delivery_type'] : "",
-      paymentMethod: json['payment_method'] is String ? json['payment_method'] : "",
-      paymentDetails: json['payment_details'] is String ? json['payment_details'] : "",
-      paymentStatus: json['payment_status'] is String ? json['payment_status'] : "",
+      alternativePhone:
+          json['alternative_phone'] is String ? json['alternative_phone'] : "",
+      chosenLogisticZoneId: json['chosen_logistic_zone_id'] is int
+          ? json['chosen_logistic_zone_id']
+          : -1,
+      shippingDeliveryType: json['shipping_delivery_type'] is String
+          ? json['shipping_delivery_type']
+          : "",
+      paymentMethod:
+          json['payment_method'] is String ? json['payment_method'] : "",
+      paymentDetails:
+          json['payment_details'] is String ? json['payment_details'] : "",
+      paymentStatus:
+          json['payment_status'] is String ? json['payment_status'] : "",
     );
   }
 

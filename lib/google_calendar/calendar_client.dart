@@ -1,5 +1,6 @@
 import 'package:googleapis/calendar/v3.dart';
 import 'package:pawlly/utils/library.dart';
+
 class CalendarClient {
   static CalendarApi? calendar;
 
@@ -26,7 +27,8 @@ class CalendarClient {
     if (hasConferenceSupport) {
       ConferenceData conferenceData = ConferenceData();
       CreateConferenceRequest conferenceRequest = CreateConferenceRequest();
-      conferenceRequest.requestId = "${startTime.millisecondsSinceEpoch}-${endTime.millisecondsSinceEpoch}";
+      conferenceRequest.requestId =
+          "${startTime.millisecondsSinceEpoch}-${endTime.millisecondsSinceEpoch}";
       conferenceData.createRequest = conferenceRequest;
 
       event.conferenceData = conferenceData;
@@ -43,7 +45,11 @@ class CalendarClient {
     event.end = end;
 
     try {
-      await calendar?.events.insert(event, calendarId, conferenceDataVersion: hasConferenceSupport ? 1 : 0, sendUpdates: shouldNotifyAttendees ? "all" : "none").then((value) {
+      await calendar?.events
+          .insert(event, calendarId,
+              conferenceDataVersion: hasConferenceSupport ? 1 : 0,
+              sendUpdates: shouldNotifyAttendees ? "all" : "none")
+          .then((value) {
         log("${locale.value.eventStatus}: ${value.status}");
         if (value.status == "confirmed") {
           toast(locale.value.eventAddedSuccessfully);
@@ -51,7 +57,8 @@ class CalendarClient {
           if (hasConferenceSupport) {
             String eventId;
             eventId = value.id!;
-            String joiningLink = "https://meet.google.com/${value.conferenceData?.conferenceId}";
+            String joiningLink =
+                "https://meet.google.com/${value.conferenceData?.conferenceId}";
             eventData = {'id': eventId, 'link': joiningLink};
           } else {
             eventData = {"status": value.status.validate()};
@@ -102,7 +109,11 @@ class CalendarClient {
     event.end = end;
 
     try {
-      await calendar?.events.patch(event, calendarId, id, conferenceDataVersion: hasConferenceSupport ? 1 : 0, sendUpdates: shouldNotifyAttendees ? "all" : "none").then((value) {
+      await calendar?.events
+          .patch(event, calendarId, id,
+              conferenceDataVersion: hasConferenceSupport ? 1 : 0,
+              sendUpdates: shouldNotifyAttendees ? "all" : "none")
+          .then((value) {
         log("${locale.value.eventStatus} : ${value.status}");
         if (value.status == "confirmed") {
           toast(locale.value.eventAddedSuccessfully);
@@ -110,7 +121,8 @@ class CalendarClient {
           if (hasConferenceSupport) {
             String eventId;
             eventId = value.id!;
-            String joiningLink = "https://meet.google.com/${value.conferenceData?.conferenceId}";
+            String joiningLink =
+                "https://meet.google.com/${value.conferenceData?.conferenceId}";
             eventData = {'id': eventId, 'link': joiningLink};
           } else {
             eventData = {"status": value.status.validate()};
@@ -133,7 +145,10 @@ class CalendarClient {
     String calendarId = "primary";
 
     try {
-      await calendar?.events.delete(calendarId, eventId, sendUpdates: shouldNotify ? "all" : "none").then((value) {
+      await calendar?.events
+          .delete(calendarId, eventId,
+              sendUpdates: shouldNotify ? "all" : "none")
+          .then((value) {
         log('Event deleted from Google Calendar');
       });
     } catch (e) {

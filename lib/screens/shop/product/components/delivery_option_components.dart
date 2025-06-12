@@ -6,7 +6,8 @@ class DeliveryOptionComponents extends StatelessWidget {
   final ProductItemData productData;
   final ProductDetailController productController;
 
-  const DeliveryOptionComponents({super.key, required this.productController, required this.productData});
+  const DeliveryOptionComponents(
+      {super.key, required this.productController, required this.productData});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,8 @@ class DeliveryOptionComponents extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         16.height,
-        ViewAllLabel(label: locale.value.productDetails, isShowAll: false).paddingSymmetric(horizontal: 16),
+        ViewAllLabel(label: locale.value.productDetails, isShowAll: false)
+            .paddingSymmetric(horizontal: 16),
         ReadMoreText(
           parseHtmlString(productData.description),
           trimLines: 3,

@@ -9,24 +9,21 @@ class ServiceCard extends StatelessWidget {
   final bool showSubTexts;
   final Color? color;
 
-  const ServiceCard({
-    super.key,
-    required this.service,
-    this.width = 130,
-    this.height = 130,
-    this.showSubTexts = false,
-    this.child,
-    this.color
-  });
+  const ServiceCard(
+      {super.key,
+      required this.service,
+      this.width = 130,
+      this.height = 130,
+      this.showSubTexts = false,
+      this.child,
+      this.color});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
       decoration: boxDecorationDefault(
-          color: color,
-        borderRadius: BorderRadius.circular(20)
-      ),
+          color: color, borderRadius: BorderRadius.circular(20)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

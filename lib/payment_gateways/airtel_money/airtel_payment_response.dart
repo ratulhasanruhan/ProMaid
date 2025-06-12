@@ -3,23 +3,29 @@
 
 class AirtelPaymentResponse {
   AirtelPaymentResponse({
-      Data? data, 
-      AirtelResonseStatus? status,}){
+    Data? data,
+    AirtelResonseStatus? status,
+  }) {
     _data = data;
     _status = status;
-}
+  }
 
   AirtelPaymentResponse.fromJson(dynamic json) {
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
-    _status = json['status'] != null ? AirtelResonseStatus.fromJson(json['status']) : null;
+    _status = json['status'] != null
+        ? AirtelResonseStatus.fromJson(json['status'])
+        : null;
   }
   Data? _data;
   AirtelResonseStatus? _status;
-AirtelPaymentResponse copyWith({  Data? data,
-  AirtelResonseStatus? status,
-}) => AirtelPaymentResponse(  data: data ?? _data,
-  status: status ?? _status,
-);
+  AirtelPaymentResponse copyWith({
+    Data? data,
+    AirtelResonseStatus? status,
+  }) =>
+      AirtelPaymentResponse(
+        data: data ?? _data,
+        status: status ?? _status,
+      );
   Data? get data => _data;
   AirtelResonseStatus? get status => _status;
 
@@ -33,7 +39,6 @@ AirtelPaymentResponse copyWith({  Data? data,
     }
     return map;
   }
-
 }
 
 /// response_code : "DP00800001006"
@@ -44,17 +49,18 @@ AirtelPaymentResponse copyWith({  Data? data,
 
 class AirtelResonseStatus {
   AirtelResonseStatus({
-      String? responseCode, 
-      String? code, 
-      bool? success, 
-      String? resultCode, 
-      String? message,}){
+    String? responseCode,
+    String? code,
+    bool? success,
+    String? resultCode,
+    String? message,
+  }) {
     _responseCode = responseCode;
     _code = code;
     _success = success;
     _resultCode = resultCode;
     _message = message;
-}
+  }
 
   AirtelResonseStatus.fromJson(dynamic json) {
     _responseCode = json['response_code'];
@@ -68,17 +74,20 @@ class AirtelResonseStatus {
   bool? _success;
   String? _resultCode;
   String? _message;
-AirtelResonseStatus copyWith({  String? responseCode,
-  String? code,
-  bool? success,
-  String? resultCode,
-  String? message,
-}) => AirtelResonseStatus(  responseCode: responseCode ?? _responseCode,
-  code: code ?? _code,
-  success: success ?? _success,
-  resultCode: resultCode ?? _resultCode,
-  message: message ?? _message,
-);
+  AirtelResonseStatus copyWith({
+    String? responseCode,
+    String? code,
+    bool? success,
+    String? resultCode,
+    String? message,
+  }) =>
+      AirtelResonseStatus(
+        responseCode: responseCode ?? _responseCode,
+        code: code ?? _code,
+        success: success ?? _success,
+        resultCode: resultCode ?? _resultCode,
+        message: message ?? _message,
+      );
   String? get responseCode => _responseCode;
   String? get code => _code;
   bool? get success => _success;
@@ -94,24 +103,29 @@ AirtelResonseStatus copyWith({  String? responseCode,
     map['message'] = _message;
     return map;
   }
-
 }
 
 /// transaction : {"id":"1957556726783556754636369","status":"Success."}
 
 class Data {
   Data({
-      Transaction? transaction,}){
+    Transaction? transaction,
+  }) {
     _transaction = transaction;
-}
+  }
 
   Data.fromJson(dynamic json) {
-    _transaction = json['transaction'] != null ? Transaction.fromJson(json['transaction']) : null;
+    _transaction = json['transaction'] != null
+        ? Transaction.fromJson(json['transaction'])
+        : null;
   }
   Transaction? _transaction;
-Data copyWith({  Transaction? transaction,
-}) => Data(  transaction: transaction ?? _transaction,
-);
+  Data copyWith({
+    Transaction? transaction,
+  }) =>
+      Data(
+        transaction: transaction ?? _transaction,
+      );
   Transaction? get transaction => _transaction;
 
   Map<String, dynamic> toJson() {
@@ -121,7 +135,6 @@ Data copyWith({  Transaction? transaction,
     }
     return map;
   }
-
 }
 
 /// id : "1957556726783556754636369"
@@ -129,11 +142,12 @@ Data copyWith({  Transaction? transaction,
 
 class Transaction {
   Transaction({
-      String? id, 
-      String? status,}){
+    String? id,
+    String? status,
+  }) {
     _id = id;
     _status = status;
-}
+  }
 
   Transaction.fromJson(dynamic json) {
     _id = json['id'];
@@ -141,11 +155,14 @@ class Transaction {
   }
   String? _id;
   String? _status;
-Transaction copyWith({  String? id,
-  String? status,
-}) => Transaction(  id: id ?? _id,
-  status: status ?? _status,
-);
+  Transaction copyWith({
+    String? id,
+    String? status,
+  }) =>
+      Transaction(
+        id: id ?? _id,
+        status: status ?? _status,
+      );
   String? get id => _id;
   String? get status => _status;
 
@@ -155,5 +172,4 @@ Transaction copyWith({  String? id,
     map['status'] = _status;
     return map;
   }
-
 }

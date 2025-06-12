@@ -16,7 +16,9 @@ class ShopRes {
   factory ShopRes.fromJson(Map<String, dynamic> json) {
     return ShopRes(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<ShopModel>.from(json['data'].map((x) => ShopModel.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<ShopModel>.from(json['data'].map((x) => ShopModel.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }
@@ -115,32 +117,57 @@ class ShopModel {
       id: json['id'] is int ? json['id'] : -1,
       slug: json['slug'] is String ? json['slug'] : "",
       name: json['name'] is String ? json['name'] : "",
-      productImage: json['product_image'] is String ? json['product_image'] : "",
-      category: json['category'] is List ? List<Category>.from(json['category'].map((x) => Category.fromJson(x))) : [],
+      productImage:
+          json['product_image'] is String ? json['product_image'] : "",
+      category: json['category'] is List
+          ? List<Category>.from(
+              json['category'].map((x) => Category.fromJson(x)))
+          : [],
       brandId: json['brand_id'] is int ? json['brand_id'] : -1,
       brandName: json['brand_name'] is String ? json['brand_name'] : "",
       unitId: json['unit_id'] is int ? json['unit_id'] : -1,
       unitName: json['unit_name'] is String ? json['unit_name'] : "",
-      shortDescription: json['short_description'] is String ? json['short_description'] : "",
+      shortDescription:
+          json['short_description'] is String ? json['short_description'] : "",
       description: json['description'] is String ? json['description'] : "",
       minPrice: json['min_price'] is num ? json['min_price'] : 0,
       maxPrice: json['max_price'] is num ? json['max_price'] : 0,
-      taxIncludeMinPrice: json['tax_include_min_price'] is num ? json['tax_include_min_price'] : 0,
-      taxIncludeMaxPrice: json['tax_include_max_price'] is num ? json['tax_include_max_price'] : 0,
+      taxIncludeMinPrice: json['tax_include_min_price'] is num
+          ? json['tax_include_min_price']
+          : 0,
+      taxIncludeMaxPrice: json['tax_include_max_price'] is num
+          ? json['tax_include_max_price']
+          : 0,
       discountValue: json['discount_value'] is num ? json['discount_value'] : 0,
-      discountType: json['discount_type'] is String ? json['discount_type'] : "",
-      minDiscountedProductAmount: json['min_discounted_product_amount'] is num ? json['min_discounted_product_amount'] : 0,
-      maxDiscountedProductAmount: json['max_discounted_product_amount'] is num ? json['max_discounted_product_amount'] : 0,
-      discountStartDate: json['discount_start_date'] is String ? json['discount_start_date'] : "",
-      discountEndDate: json['discount_end_date'] is String ? json['discount_end_date'] : "",
+      discountType:
+          json['discount_type'] is String ? json['discount_type'] : "",
+      minDiscountedProductAmount: json['min_discounted_product_amount'] is num
+          ? json['min_discounted_product_amount']
+          : 0,
+      maxDiscountedProductAmount: json['max_discounted_product_amount'] is num
+          ? json['max_discounted_product_amount']
+          : 0,
+      discountStartDate: json['discount_start_date'] is String
+          ? json['discount_start_date']
+          : "",
+      discountEndDate:
+          json['discount_end_date'] is String ? json['discount_end_date'] : "",
       sellTarget: json['sell_target'] is int ? json['sell_target'] : -1,
       stockQty: json['stock_qty'] is int ? json['stock_qty'] : -1,
       isPublished: json['is_published'] is int ? json['is_published'] : -1,
-      minPurchaseQty: json['min_purchase_qty'] is int ? json['min_purchase_qty'] : -1,
-      maxPurchaseQty: json['max_purchase_qty'] is int ? json['max_purchase_qty'] : -1,
+      minPurchaseQty:
+          json['min_purchase_qty'] is int ? json['min_purchase_qty'] : -1,
+      maxPurchaseQty:
+          json['max_purchase_qty'] is int ? json['max_purchase_qty'] : -1,
       hasVariation: json['has_variation'] is int ? json['has_variation'] : -1,
-      variationData: json['variation_data'] is List ? List<VariationData>.from(json['variation_data'].map((x) => VariationData.fromJson(x))) : [],
-      productGallary: json['product_gallary'] is List ? List<ProductGallary>.from(json['product_gallary'].map((x) => ProductGallary.fromJson(x))) : [],
+      variationData: json['variation_data'] is List
+          ? List<VariationData>.from(
+              json['variation_data'].map((x) => VariationData.fromJson(x)))
+          : [],
+      productGallary: json['product_gallary'] is List
+          ? List<ProductGallary>.from(
+              json['product_gallary'].map((x) => ProductGallary.fromJson(x)))
+          : [],
       hasWarranty: json['has_warranty'] is int ? json['has_warranty'] : -1,
       createdBy: json['created_by'] is int ? json['created_by'] : -1,
       updatedBy: json['updated_by'] is int ? json['updated_by'] : -1,

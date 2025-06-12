@@ -16,7 +16,10 @@ class PetNoteRes {
   factory PetNoteRes.fromJson(Map<String, dynamic> json) {
     return PetNoteRes(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<NotePetModel>.from(json['data'].map((x) => NotePetModel.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<NotePetModel>.from(
+              json['data'].map((x) => NotePetModel.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }
@@ -69,7 +72,9 @@ class NotePetModel {
       img: json['img'] is String ? json['img'] : "",
       status: json['status'] is int ? json['status'] : -1,
       createdBy: json['created_by'] is int ? json['created_by'] : -1,
-      createdbyUser: json['createdby_user'] is Map ? UserData.fromJson(json['createdby_user']) : UserData(),
+      createdbyUser: json['createdby_user'] is Map
+          ? UserData.fromJson(json['createdby_user'])
+          : UserData(),
       updatedBy: json['updated_by'] is String ? json['updated_by'] : "",
       deletedBy: json['deleted_by'] is String ? json['deleted_by'] : "",
       isPrivate: (json['is_private'] == 1).obs,

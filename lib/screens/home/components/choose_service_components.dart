@@ -46,6 +46,7 @@ class ChooseServiceComponents extends StatelessWidget {
                 return InkWell(
                   onTap: () {
                     hideKeyboard(context);
+                    homeScreenController.selectedServiceIndex.value = index;
                     navigateToService(homeScreenController
                         .dashboardData.value.systemService[index]);
                   },

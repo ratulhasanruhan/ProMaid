@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
+import 'package:pawlly/screens/booking_module/veterinery/veternary_type.dart';
 import '../../dashboard/dashboard_res_model.dart';
 import 'package:pawlly/utils/library.dart';
 
 void navigateToService(SystemService service, {dynamic arguments}) {
-    HomeScreenController hCont = Get.find();
+  HomeScreenController hCont = Get.find();
   try {
     hCont.init();
   } catch (e) {
@@ -12,12 +13,15 @@ void navigateToService(SystemService service, {dynamic arguments}) {
   currentSelectedService(service);
   myPetsScreenController.init();
   selectedPet(PetData());
-  if (service.slug.contains(ServicesKeyConst.boarding)) {
+
+  hCont.goTo(VeternaryType());
+
+  /*if (service.slug.contains(ServicesKeyConst.boarding)) {
     Get.to(() => BoardingServicesScreen(),
         arguments: arguments, duration: const Duration(milliseconds: 800));
   } else if (service.slug.contains(ServicesKeyConst.veterinary)) {
-    hCont.goTo(VeterineryServiceScreen());
-    //Get.to(() => VeterineryServiceScreen(), arguments: arguments, duration: const Duration(milliseconds: 800));
+    //hCont.goTo(VeterineryServiceScreen());
+    Get.to(() => VeterineryServiceScreen(), arguments: arguments, duration: const Duration(milliseconds: 800));
   } else if (service.slug.contains(ServicesKeyConst.grooming)) {
     Get.to(() => GroomingScreen(),
         arguments: arguments, duration: const Duration(milliseconds: 800));
@@ -30,7 +34,7 @@ void navigateToService(SystemService service, {dynamic arguments}) {
   } else if (service.slug.contains(ServicesKeyConst.dayCare)) {
     Get.to(() => DayCareScreen(),
         arguments: arguments, duration: const Duration(milliseconds: 800));
-  }
+  }*/
 }
 
 String getServiceKeyByServiceElement(SystemService service) {

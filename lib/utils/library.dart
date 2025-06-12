@@ -111,8 +111,8 @@ export 'package:pawlly/screens/booking_module/add_booking_forms/model/book_veter
 export 'package:pawlly/screens/booking_module/add_booking_forms/model/book_walking_req.dart';
 export 'package:pawlly/screens/booking_module/add_booking_forms/training_service_controller.dart';
 export 'package:pawlly/screens/booking_module/add_booking_forms/training_service_screen.dart';
-export 'package:pawlly/screens/booking_module/add_booking_forms/veterinery_service_controller.dart';
-export 'package:pawlly/screens/booking_module/add_booking_forms/veterinery_service_screen.dart';
+export 'package:pawlly/screens/booking_module/veterinery/veterinery_service_controller.dart';
+export 'package:pawlly/screens/booking_module/veterinery/veterinery_service_screen.dart';
 export 'package:pawlly/screens/booking_module/add_booking_forms/walking_service_controller.dart';
 export 'package:pawlly/screens/booking_module/add_booking_forms/walking_service_screen.dart';
 export 'package:pawlly/screens/booking_module/booking_confirmation_dialog.dart';

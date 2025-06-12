@@ -12,7 +12,10 @@ class CountryListResponse {
   factory CountryListResponse.fromJson(Map<String, dynamic> json) {
     return CountryListResponse(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<CountryData>.from(json['data'].map((x) => CountryData.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<CountryData>.from(
+              json['data'].map((x) => CountryData.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }

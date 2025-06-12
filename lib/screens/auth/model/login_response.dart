@@ -12,7 +12,8 @@ class LoginResponse {
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
       status: json['status'] is bool ? json['status'] : false,
-      userData: json['data'] is Map ? UserData.fromJson(json['data']) : UserData(),
+      userData:
+          json['data'] is Map ? UserData.fromJson(json['data']) : UserData(),
       message: json['message'] is String ? json['message'] : "",
     );
   }
@@ -62,15 +63,21 @@ class UserData {
       id: json['id'] is int ? json['id'] : -1,
       firstName: json['first_name'] is String ? json['first_name'] : "",
       lastName: json['last_name'] is String ? json['last_name'] : "",
-      userName: json['user_name'] is String ? json['user_name'] : "${json['first_name']} ${json['last_name']}",
+      userName: json['user_name'] is String
+          ? json['user_name']
+          : "${json['first_name']} ${json['last_name']}",
       mobile: json['mobile'] is String ? json['mobile'] : "",
       address: json['address'] is String ? json['address'] : "",
       email: json['email'] is String ? json['email'] : "",
-      userRole: json['user_role'] is List ? List<String>.from(json['user_role'].map((x) => x)) : [],
+      userRole: json['user_role'] is List
+          ? List<String>.from(json['user_role'].map((x) => x))
+          : [],
       apiToken: json['api_token'] is String ? json['api_token'] : "",
-      profileImage: json['profile_image'] is String ? json['profile_image'] : "",
+      profileImage:
+          json['profile_image'] is String ? json['profile_image'] : "",
       loginType: json['login_type'] is String ? json['login_type'] : "",
-      isSocialLogin: json['is_social_login'] is bool ? json['is_social_login'] : false,
+      isSocialLogin:
+          json['is_social_login'] is bool ? json['is_social_login'] : false,
       userType: json['user_type'] is String ? json['user_type'] : "",
     );
   }

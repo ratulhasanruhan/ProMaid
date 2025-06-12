@@ -14,7 +14,9 @@ class CityListResponse {
   factory CityListResponse.fromJson(Map<String, dynamic> json) {
     return CityListResponse(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<CityData>.from(json['data'].map((x) => CityData.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<CityData>.from(json['data'].map((x) => CityData.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }

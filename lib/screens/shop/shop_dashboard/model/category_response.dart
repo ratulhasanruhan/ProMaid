@@ -10,7 +10,10 @@ class CategoryResponse {
   factory CategoryResponse.fromJson(Map<String, dynamic> json) {
     return CategoryResponse(
       status: json['status'] is bool ? json['status'] : false,
-      category: json['data'] is List ? List<CategoryData>.from(json['data'].map((x) => CategoryData.fromJson(x))) : [],
+      category: json['data'] is List
+          ? List<CategoryData>.from(
+              json['data'].map((x) => CategoryData.fromJson(x)))
+          : [],
     );
   }
 
@@ -61,7 +64,8 @@ class CategoryData {
       parentId: json['parent_id'] is int ? json['parent_id'] : -1,
       brandId: json['brand_id'] is int ? json['brand_id'] : -1,
       status: json['status'] is int ? json['status'] : -1,
-      categoryImage: json['category_image'] is String ? json['category_image'] : "",
+      categoryImage:
+          json['category_image'] is String ? json['category_image'] : "",
       createdBy: json['created_by'] is String ? json['created_by'] : "",
       updatedBy: json['updated_by'] is String ? json['updated_by'] : "",
       deletedBy: json['deleted_by'] is String ? json['deleted_by'] : "",

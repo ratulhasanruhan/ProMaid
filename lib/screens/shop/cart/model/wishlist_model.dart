@@ -14,7 +14,10 @@ class ProductWishlistRes {
   factory ProductWishlistRes.fromJson(Map<String, dynamic> json) {
     return ProductWishlistRes(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<ProductItemData>.from(json['data'].map((x) => ProductItemData.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<ProductItemData>.from(
+              json['data'].map((x) => ProductItemData.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }

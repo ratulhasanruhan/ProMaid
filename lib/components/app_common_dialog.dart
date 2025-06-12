@@ -1,5 +1,5 @@
-
 import 'package:pawlly/utils/library.dart';
+
 class AppCommonDialog extends StatelessWidget {
   final String title;
   final Widget child;
@@ -17,7 +17,8 @@ class AppCommonDialog extends StatelessWidget {
             width: context.width(),
             decoration: boxDecorationDefault(
               color: context.primaryColor,
-              borderRadius: radiusOnly(topRight: defaultRadius, topLeft: defaultRadius),
+              borderRadius:
+                  radiusOnly(topRight: defaultRadius, topLeft: defaultRadius),
             ),
             child: Row(
               children: [

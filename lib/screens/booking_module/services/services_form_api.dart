@@ -21,7 +21,8 @@ import '../model/training_model.dart';
 import '../model/walking_model.dart';
 
 class PetServiceFormApis {
-  static Future<List<FacilityModel>> getFacility({int? employeeId, int? isBooking}) async {
+  static Future<List<FacilityModel>> getFacility(
+      {int? employeeId, int? isBooking}) async {
     String empId = employeeId != -1 ? 'employee_id=$employeeId' : "";
     String isFacilityBooking = isBooking != 0
         ? employeeId != -1
@@ -31,7 +32,9 @@ class PetServiceFormApis {
 
     final facilityRes = FacilityRes.fromJson(
       await handleResponse(
-        await buildHttpResponse("${APIEndPoints.getFacility}?$empId$isFacilityBooking", method: HttpMethodType.GET),
+        await buildHttpResponse(
+            "${APIEndPoints.getFacility}?$empId$isFacilityBooking",
+            method: HttpMethodType.GET),
       ),
     );
     return facilityRes.data;
@@ -46,7 +49,8 @@ class PetServiceFormApis {
     required List<TrainingModel> trainingList,
     Function(bool)? lastPageCallBack,
   }) async {
-    String empId = employeeId != null && employeeId != -1 ? 'employee_id=$employeeId' : "";
+    String empId =
+        employeeId != null && employeeId != -1 ? 'employee_id=$employeeId' : "";
     String isTrainingBooking = isBooking != null && isBooking != 0
         ? employeeId != null && employeeId != -1
             ? '&is_booking=$isBooking'
@@ -75,7 +79,8 @@ class PetServiceFormApis {
     required List<ServiceModel> serviceList,
     Function(bool)? lastPageCallBack,
   }) async {
-    String categoryIdParam = categoryId != null ? '&category_id=$categoryId' : "";
+    String categoryIdParam =
+        categoryId != null ? '&category_id=$categoryId' : "";
     String searchService = search.isNotEmpty ? '&search=$search' : '';
 
     var res = ServiceRes.fromJson(await handleResponse(await buildHttpResponse(
@@ -109,7 +114,9 @@ class PetServiceFormApis {
       lat = latitude.trim().isNotEmpty ? '&latitude=$latitude' : "";
       long = longitude.trim().isNotEmpty ? '&longitude=$longitude' : "";
     }
-    return EmployeeRes.fromJson(await handleResponse(await buildHttpResponse("${APIEndPoints.getEmployeeList}?per_page=$perPage&page=$page&type=$role$serviceIdParam$searchEmployee$lat$long", method: HttpMethodType.GET)));
+    return EmployeeRes.fromJson(await handleResponse(await buildHttpResponse(
+        "${APIEndPoints.getEmployeeList}?per_page=$perPage&page=$page&type=$role$serviceIdParam$searchEmployee$lat$long",
+        method: HttpMethodType.GET)));
   }
 
   static Future<RxList<EmployeeModel>> getPetSitters({
@@ -134,7 +141,10 @@ class PetServiceFormApis {
       long = longitude.trim().isNotEmpty ? '&longitude=$longitude' : "";
     }
 
-    final empRes = EmployeeRes.fromJson(await handleResponse(await buildHttpResponse("${APIEndPoints.getEmployeeList}?per_page=$perPage&page=$page&type=$role$serviceIdParam$searchEmployee$lat$long", method: HttpMethodType.GET)));
+    final empRes = EmployeeRes.fromJson(await handleResponse(
+        await buildHttpResponse(
+            "${APIEndPoints.getEmployeeList}?per_page=$perPage&page=$page&type=$role$serviceIdParam$searchEmployee$lat$long",
+            method: HttpMethodType.GET)));
 
     if (page == 1) petSittersList.clear();
     petSittersList.addAll(empRes.data);
@@ -173,7 +183,9 @@ class PetServiceFormApis {
     Function(bool)? lastPageCallBack,
   }) async {
     String searchBreed = search.isNotEmpty ? '&search=$search' : '';
-    return BreedRes.fromJson(await handleResponse(await buildHttpResponse("${APIEndPoints.getBreed}?pettype_id=$petTypeId&per_page=$perPage&page=$page$searchBreed", method: HttpMethodType.GET)));
+    return BreedRes.fromJson(await handleResponse(await buildHttpResponse(
+        "${APIEndPoints.getBreed}?pettype_id=$petTypeId&per_page=$perPage&page=$page$searchBreed",
+        method: HttpMethodType.GET)));
   }
 
   static Future<List<DurationData>> getDuration({
@@ -183,11 +195,15 @@ class PetServiceFormApis {
     int page = 1,
     int perPage = 50,
   }) async {
-    String empId = employeeId != null && employeeId != 0 ? '&employee_id=$employeeId' : "";
-    String isDurationBooking = isBooking != null && isBooking != 0 ? '&is_booking=$isBooking' : "";
+    String empId =
+        employeeId != null && employeeId != 0 ? '&employee_id=$employeeId' : "";
+    String isDurationBooking =
+        isBooking != null && isBooking != 0 ? '&is_booking=$isBooking' : "";
     final res = WalkingDurationRes.fromJson(
       await handleResponse(
-        await buildHttpResponse("${APIEndPoints.getDuration}?type=$serviceType$empId$isDurationBooking&per_page=$perPage&page=$page", method: HttpMethodType.GET),
+        await buildHttpResponse(
+            "${APIEndPoints.getDuration}?type=$serviceType$empId$isDurationBooking&per_page=$perPage&page=$page",
+            method: HttpMethodType.GET),
       ),
     );
     return res.data;
@@ -199,7 +215,9 @@ class PetServiceFormApis {
     int page = 1,
     int perPage = 50,
   }) async {
-    String trainigtypeId = trainingTypeId != null && trainingTypeId != 0 ? '&training_type_id=$trainingTypeId' : "";
+    String trainigtypeId = trainingTypeId != null && trainingTypeId != 0
+        ? '&training_type_id=$trainingTypeId'
+        : "";
     final res = WalkingDurationRes.fromJson(
       await handleResponse(
         await buildHttpResponse(
@@ -211,12 +229,17 @@ class PetServiceFormApis {
     return res.data;
   }
 
-  static Future<void> bookServiceApi({required Map<String, dynamic> request, List<PlatformFile>? files, required VoidCallback onSuccess, required VoidCallback loaderOff}) async {
+  static Future<void> bookServiceApi(
+      {required Map<String, dynamic> request,
+      List<PlatformFile>? files,
+      required VoidCallback onSuccess,
+      required VoidCallback loaderOff}) async {
     var multiPartRequest = await getMultiPartRequest(APIEndPoints.saveBooking);
     multiPartRequest.fields.addAll(await getMultipartFields(val: request));
 
     if (files.validate().isNotEmpty) {
-      multiPartRequest.files.add(await http.MultipartFile.fromPath('medical_report', files.validate().first.path.validate()));
+      multiPartRequest.files.add(await http.MultipartFile.fromPath(
+          'medical_report', files.validate().first.path.validate()));
     }
 
     /*  if (files.validate().isNotEmpty) {
@@ -245,6 +268,8 @@ class PetServiceFormApis {
   }
 
   static Future<BaseResponseModel> savePayment({required Map request}) async {
-    return BaseResponseModel.fromJson(await handleResponse(await buildHttpResponse(APIEndPoints.savePayment, request: request, method: HttpMethodType.POST)));
+    return BaseResponseModel.fromJson(await handleResponse(
+        await buildHttpResponse(APIEndPoints.savePayment,
+            request: request, method: HttpMethodType.POST)));
   }
 }

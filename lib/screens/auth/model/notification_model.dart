@@ -13,8 +13,12 @@ class NotificationRes {
 
   factory NotificationRes.fromJson(Map<String, dynamic> json) {
     return NotificationRes(
-      notificationData: json['notification_data'] is List ? List<NotificationData>.from(json['notification_data'].map((x) => NotificationData.fromJson(x))) : [],
-      allUnreadCount: json['all_unread_count'] is int ? json['all_unread_count'] : -1,
+      notificationData: json['notification_data'] is List
+          ? List<NotificationData>.from(json['notification_data']
+              .map((x) => NotificationData.fromJson(x)))
+          : [],
+      allUnreadCount:
+          json['all_unread_count'] is int ? json['all_unread_count'] : -1,
       message: json['message'] is String ? json['message'] : "",
       status: json['status'] is bool ? json['status'] : false,
     );
@@ -55,9 +59,12 @@ class NotificationData {
     return NotificationData(
       id: json['id'] is String ? json['id'] : "",
       type: json['type'] is String ? json['type'] : "",
-      notifiableType: json['notifiable_type'] is String ? json['notifiable_type'] : "",
+      notifiableType:
+          json['notifiable_type'] is String ? json['notifiable_type'] : "",
       notifiableId: json['notifiable_id'] is int ? json['notifiable_id'] : -1,
-      data: json['data'] is Map ? NotificationModel.fromJson(json['data']) : NotificationModel(notificationDetail: NotificationDetail()),
+      data: json['data'] is Map
+          ? NotificationModel.fromJson(json['data'])
+          : NotificationModel(notificationDetail: NotificationDetail()),
       readAt: json['read_at'] is String ? json['read_at'] : "",
       createdAt: json['created_at'] is String ? json['created_at'] : "",
       updatedAt: json['updated_at'] is String ? json['updated_at'] : "",
@@ -90,7 +97,9 @@ class NotificationModel {
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
     return NotificationModel(
       subject: json['subject'] is String ? json['subject'] : "",
-      notificationDetail: json['data'] is Map ? NotificationDetail.fromJson(json['data']) : NotificationDetail(),
+      notificationDetail: json['data'] is Map
+          ? NotificationDetail.fromJson(json['data'])
+          : NotificationDetail(),
     );
   }
 
@@ -147,24 +156,38 @@ class NotificationDetail {
 
   factory NotificationDetail.fromJson(Map<String, dynamic> json) {
     return NotificationDetail(
-      notificationType: json['notification_type'] is String ? json['notification_type'] : "",
-      loggedInUserFullname: json['logged_in_user_fullname'] is String ? json['logged_in_user_fullname'] : "",
-      loggedInUserRole: json['logged_in_user_role'] is String ? json['logged_in_user_role'] : "",
+      notificationType:
+          json['notification_type'] is String ? json['notification_type'] : "",
+      loggedInUserFullname: json['logged_in_user_fullname'] is String
+          ? json['logged_in_user_fullname']
+          : "",
+      loggedInUserRole: json['logged_in_user_role'] is String
+          ? json['logged_in_user_role']
+          : "",
       companyName: json['company_name'] is String ? json['company_name'] : "",
-      companyContactInfo: json['company_contact_info'] is String ? json['company_contact_info'] : "",
+      companyContactInfo: json['company_contact_info'] is String
+          ? json['company_contact_info']
+          : "",
       type: json['type'] is String ? json['type'] : "",
       id: json['id'] is int ? json['id'] : -1,
       itemId: json['item_id'] is int ? json['item_id'] : -1,
       userId: json['user_id'] is int ? json['user_id'] : -1,
       userName: json['user_name'] is String ? json['user_name'] : "",
       employeeId: json['employee_id'] is int ? json['employee_id'] : -1,
-      employeeName: json['employee_name'] is String ? json['employee_name'] : "",
+      employeeName:
+          json['employee_name'] is String ? json['employee_name'] : "",
       bookingDate: json['booking_date'] is String ? json['booking_date'] : "",
       bookingTime: json['booking_time'] is String ? json['booking_time'] : "",
-      bookingServiceImage: json['booking_services_image'] is String ? json['booking_services_image'] : "",
-      bookingServicesNames: json['booking_services_names'] is String ? json['booking_services_names'] : "",
+      bookingServiceImage: json['booking_services_image'] is String
+          ? json['booking_services_image']
+          : "",
+      bookingServicesNames: json['booking_services_names'] is String
+          ? json['booking_services_names']
+          : "",
       siteUrl: json['site_url'] is String ? json['site_url'] : "",
-      notificationGroup: json['notification_group'] is String ? json['notification_group'] : "",
+      notificationGroup: json['notification_group'] is String
+          ? json['notification_group']
+          : "",
       orderCode: json['order_code'] is String ? json['order_code'] : "",
     );
   }

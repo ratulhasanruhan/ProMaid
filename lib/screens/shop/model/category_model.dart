@@ -12,7 +12,10 @@ class CategoryRes {
   factory CategoryRes.fromJson(Map<String, dynamic> json) {
     return CategoryRes(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<ShopCategoryModel>.from(json['data'].map((x) => ShopCategoryModel.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<ShopCategoryModel>.from(
+              json['data'].map((x) => ShopCategoryModel.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }
@@ -62,7 +65,8 @@ class ShopCategoryModel {
       name: json['name'] is String ? json['name'] : "",
       parentId: json['parent_id'],
       status: json['status'] is int ? json['status'] : -1,
-      categoryImage: json['category_image'] is String ? json['category_image'] : "",
+      categoryImage:
+          json['category_image'] is String ? json['category_image'] : "",
       createdBy: json['created_by'],
       updatedBy: json['updated_by'],
       deletedBy: json['deleted_by'],

@@ -7,7 +7,11 @@ class ProductReviewsResponse {
 
   factory ProductReviewsResponse.fromJson(Map<String, dynamic> json) {
     return ProductReviewsResponse(
-      data: json['data'] != null ? (json['data'] as List).map((i) => ProductReviewDataModel.fromJson(i)).toList() : null,
+      data: json['data'] != null
+          ? (json['data'] as List)
+              .map((i) => ProductReviewDataModel.fromJson(i))
+              .toList()
+          : null,
       message: json['message'],
       status: json['status'],
     );
@@ -73,7 +77,11 @@ class ProductReviewDataModel {
       reviewDislikes: json['review_dislikes'],
       isUserLike: json['is_user_like'],
       isUserDislike: json['is_user_dislike'],
-      reviewGallary: json['review_gallary'] != null ? (json['review_gallary'] as List).map((i) => ReviewGallaryData.fromJson(i)).toList() : null,
+      reviewGallary: json['review_gallary'] != null
+          ? (json['review_gallary'] as List)
+              .map((i) => ReviewGallaryData.fromJson(i))
+              .toList()
+          : null,
       reviewLikes: json['review_likes'],
       reviewMsg: json['review_msg'],
       userId: json['user_id'],
@@ -82,7 +90,11 @@ class ProductReviewDataModel {
       updatedAt: json['updated_at'],
       deletedAt: json['deleted_at'],
       featureImage: json['feature_image'],
-      gallery: json['gallery'] != null ? (json['gallery'] as List).map((i) => ReviewGallaryData.fromJson(i)).toList() : null,
+      gallery: json['gallery'] != null
+          ? (json['gallery'] as List)
+              .map((i) => ReviewGallaryData.fromJson(i))
+              .toList()
+          : null,
       productVariationId: json['product_variation_id'],
     );
   }
@@ -123,7 +135,17 @@ class ReviewGallaryData {
   String? updatedAt;
   int? updatedBy;
 
-  ReviewGallaryData({this.createdAt, this.createdBy, this.deletedAt, this.deletedBy, this.fullUrl, this.id, this.reviewId, this.status, this.updatedAt, this.updatedBy});
+  ReviewGallaryData(
+      {this.createdAt,
+      this.createdBy,
+      this.deletedAt,
+      this.deletedBy,
+      this.fullUrl,
+      this.id,
+      this.reviewId,
+      this.status,
+      this.updatedAt,
+      this.updatedBy});
 
   factory ReviewGallaryData.fromJson(Map<String, dynamic> json) {
     return ReviewGallaryData(
@@ -166,7 +188,8 @@ class ProductReviewLikeDislikeModel {
   String? message;
   bool? status;
 
-  ProductReviewLikeDislikeModel({this.dislikeCount, this.likeCount, this.message, this.status});
+  ProductReviewLikeDislikeModel(
+      {this.dislikeCount, this.likeCount, this.message, this.status});
 
   factory ProductReviewLikeDislikeModel.fromJson(Map<String, dynamic> json) {
     return ProductReviewLikeDislikeModel(

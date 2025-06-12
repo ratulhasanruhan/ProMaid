@@ -14,7 +14,10 @@ class AddressListResponse {
   factory AddressListResponse.fromJson(Map<String, dynamic> json) {
     return AddressListResponse(
       message: json['message'] is String ? json['message'] : "",
-      userAddress: json['data'] is List ? List<UserAddress>.from(json['data'].map((x) => UserAddress.fromJson(x))) : [],
+      userAddress: json['data'] is List
+          ? List<UserAddress>.from(
+              json['data'].map((x) => UserAddress.fromJson(x)))
+          : [],
       status: json['status'] is bool ? json['status'] : false,
     );
   }
@@ -64,8 +67,10 @@ class UserAddress {
       id: json['id'] is int ? (json['id'] as int).obs : (-1).obs,
       firstName: json['first_name'] is String ? json['first_name'] : "",
       lastName: json['last_name'] is String ? json['last_name'] : "",
-      addressLine1: json['address_line_1'] is String ? json['address_line_1'] : "",
-      addressLine2: json['address_line_2'] is String ? json['address_line_2'] : "",
+      addressLine1:
+          json['address_line_1'] is String ? json['address_line_1'] : "",
+      addressLine2:
+          json['address_line_2'] is String ? json['address_line_2'] : "",
       postalCode: json['postal_code'] is String ? json['postal_code'] : "",
       city: json['city'] is String ? json['city'] : "",
       state: json['state'] is String ? json['state'] : "",

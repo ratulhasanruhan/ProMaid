@@ -14,13 +14,13 @@ class HomeScreenController extends GetxController {
               payment: PaymentDetails(),
               training: Training())))).obs;
 
+  RxInt selectedServiceIndex = 0.obs;
   Rx<DashboardData> dashboardData = DashboardData(
           upcommingBooking: BookingDataModel(
               service: SystemService(),
               payment: PaymentDetails(),
               training: Training()))
       .obs;
-
 
   final GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
 
@@ -35,7 +35,6 @@ class HomeScreenController extends GetxController {
     }
     return false;
   }
-
 
   @override
   void onReady() {

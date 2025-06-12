@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:phonepe_payment_sdk/phonepe_payment_sdk.dart';
 import 'package:pawlly/utils/library.dart';
+
 class PhonePeServices {
   int bookingId;
   num totalAmount;
@@ -24,7 +25,8 @@ class PhonePeServices {
   }) {
     isTest = kDebugMode;
     environmentValue = isTest ? phonePeTestEnvironment : phonePeLiveEnvironment;
-    appId = isTest ? "" : appConfigs.value.phonepe.phonepeAppId.validate().trim();
+    appId =
+        isTest ? "" : appConfigs.value.phonepe.phonepeAppId.validate().trim();
     merchantId = appConfigs.value.phonepe.phonepeMerchantId.validate().trim();
     saltKey = appConfigs.value.phonepe.phonepeSaltKey.validate().trim();
     saltIndex = appConfigs.value.phonepe.phonepeSaltIndex.validate().trim();
@@ -45,10 +47,13 @@ class PhonePeServices {
   Future<void> createBodyAndCheckSum(num amount, String payType) async {
     try {
       if (txnId.trim().isEmpty) {
-        txnId = "${generateRandomString(5).toUpperCase()}${bookingId > 0 ? bookingId : loginUserData.value.id}";
+        txnId =
+            "${generateRandomString(5).toUpperCase()}${bookingId > 0 ? bookingId : loginUserData.value.id}";
       }
       if (generatedUsersId.trim().isEmpty) {
-        generatedUsersId = loginUserData.value.email.isNotEmpty ? loginUserData.value.email : "${generateRandomString(6).toUpperCase()}${loginUserData.value.id}";
+        generatedUsersId = loginUserData.value.email.isNotEmpty
+            ? loginUserData.value.email
+            : "${generateRandomString(6).toUpperCase()}${loginUserData.value.id}";
       }
       Map<String, dynamic> requestBody = {
         "merchantId": merchantId,
@@ -58,8 +63,11 @@ class PhonePeServices {
         "redirectUrl": "https://webhook.site/redirect-url",
         "redirectMode": "REDIRECT",
         "callbackUrl": "https://webhook.site/callback-url",
-        if (loginUserData.value.mobile.isNotEmpty) "mobileNumber": loginUserData.value.mobile,
-        "paymentInstrument": payType == cardPayType ? {"type": payType} : {"type": "UPI_INTENT", "targetApp": payType}
+        if (loginUserData.value.mobile.isNotEmpty)
+          "mobileNumber": loginUserData.value.mobile,
+        "paymentInstrument": payType == cardPayType
+            ? {"type": payType}
+            : {"type": "UPI_INTENT", "targetApp": payType}
       };
       String jsonString = jsonEncode(requestBody);
       body = base64Encode(utf8.encode(jsonString));
@@ -76,7 +84,8 @@ class PhonePeServices {
   Future<void> phonePeCheckout(BuildContext context) async {
     bool isInitialized = false;
     try {
-      isInitialized = await PhonePePaymentSdk.init(environmentValue, appId, merchantId, kDebugMode);
+      isInitialized = await PhonePePaymentSdk.init(
+          environmentValue, appId, merchantId, kDebugMode);
 
       if (isInitialized) {
         if (!context.mounted) return;
@@ -97,7 +106,8 @@ class PhonePeServices {
                 ),
                 SettingItemWidget(
                   title: "Pay with Card",
-                  leading: const Icon(Icons.credit_card_rounded, color: primaryTextColor),
+                  leading: const Icon(Icons.credit_card_rounded,
+                      color: primaryTextColor),
                   onTap: () async {
                     handlePayClick(isTypeCard: true);
                   },
@@ -118,10 +128,12 @@ class PhonePeServices {
     if (isTypeCard) {
       await createBodyAndCheckSum(totalAmount, cardPayType);
     } else {
-      String? upiAppListResponse = await PhonePePaymentSdk.getInstalledUpiAppsForAndroid();
+      String? upiAppListResponse =
+          await PhonePePaymentSdk.getInstalledUpiAppsForAndroid();
       Iterable resp = jsonDecode(upiAppListResponse!);
       debugPrint('UPIAPPLISTRESPONSE: $upiAppListResponse');
-      List<UpiResponse> installedUpiAppList = resp.map((e) => UpiResponse.fromJson(e)).toList();
+      List<UpiResponse> installedUpiAppList =
+          resp.map((e) => UpiResponse.fromJson(e)).toList();
       final res = await Get.to(() => UpiPayScreen(installedUpiAppList));
       if (res is String) {
         packageName = res;
@@ -129,7 +141,9 @@ class PhonePeServices {
       }
     }
 
-    Future<Map<dynamic, dynamic>?> response = PhonePePaymentSdk.startTransaction(body, callback, checkSum, packageName);
+    Future<Map<dynamic, dynamic>?> response =
+        PhonePePaymentSdk.startTransaction(
+            body, callback, checkSum, packageName);
     await response.then((val) {
       log('startPGTransaction response: $val');
       if (val?['status'] == 'SUCCESS') {
@@ -145,9 +159,11 @@ class PhonePeServices {
 
   //generateRandomString
   String generateRandomString(int len) {
-    const chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    const chars =
+        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
     Random rnd = Random();
-    var s = String.fromCharCodes(Iterable.generate(len, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
+    var s = String.fromCharCodes(Iterable.generate(
+        len, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
     log('generateRandomString(len:$len) --> ${s.toUpperCase()}');
     return s;
   }

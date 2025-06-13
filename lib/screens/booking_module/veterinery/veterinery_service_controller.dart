@@ -52,7 +52,21 @@ class VeterineryController extends GetxController {
           training: Training())
       .obs;
 
-  //
+  //Date and Time
+  RxString bookingDate = "--:--".obs;
+  RxString bookingTime = "--:--".obs;
+
+
+  //HOme Options (New)
+  var homeSelected = 'Small House'.obs;
+
+  final List<String> homeOptions = [
+    "Pro Villa Duplex House",
+    "Small House",
+    "Medium House",
+    "Large House",
+  ];
+
 
   @override
   void onInit() {
@@ -98,6 +112,8 @@ class VeterineryController extends GetxController {
           .bookingDetail.value.serviceDateTime.dateInyyyyMMddHHmmFormat
           .formatTimeHHmm24hour()
           .toString();
+      bookingDate.value = bookVeterinaryReq.date;
+      bookingTime.value = bookVeterinaryReq.time;
     } catch (e) {
       log('veterinery Reschedule init E: $e');
     }
@@ -120,7 +136,7 @@ class VeterineryController extends GetxController {
       if (!filePathsSet.contains(pickedFiles[i].name.trim().toLowerCase())) {
         medicalReportfiles.add(pickedFiles[i]);
         // todo : add languages
-        toast("Medical report added successfully");
+        toast("Image added successfully");
       }
     }
   }

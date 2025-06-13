@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pawlly/screens/booking_module/veterinery/veternary_booking.dart';
 import '../../../utils/library.dart';
 
 class VeterinerySvType extends StatelessWidget {
   VeterinerySvType({super.key});
 
 
-  final VeterineryController veterineryController = Get.put(
-      VeterineryController());
+  final VeterineryController veterineryController = Get.find<VeterineryController>();
   final HomeScreenController homeScreenController = Get.find();
 
   @override
@@ -115,43 +115,67 @@ class VeterinerySvType extends StatelessWidget {
     );
   }
   Widget _buildBigCard(ServiceModel item) {
-    return Container(
-      height: 140,
-      padding: EdgeInsets.all(12),
-      decoration: _cardDecoration(),
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.bottomRight,
-            child: CachedImageWidget(url: item.serviceImage, width: 80),
-          ),
-          Text(
-            item.name,
-            maxLines: 2,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, height: 1.3),
-          ),
-        ],
+    return InkWell(
+      onTap: () {
+        veterineryController.selectedService(item);
+        veterineryController.serviceCont.text = item.name;
+        currentSelectedService.value.serviceAmount = item.defaultPrice.toDouble();
+        veterineryController.bookVeterinaryReq.price =item.defaultPrice.toDouble();
+
+        veterineryController.getVet();
+
+        homeScreenController.goTo(VeternaryBooking());
+      },
+      child: Container(
+        height: 100,
+        padding: EdgeInsets.all(12),
+        decoration: _cardDecoration(),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomRight,
+              child: CachedImageWidget(url: item.serviceImage, width: 80),
+            ),
+            Text(
+              item.name,
+              maxLines: 2,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, height: 1.3),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildSmallCard(ServiceModel item) {
-    return Container(
-      height: 100,
-      padding: EdgeInsets.all(8),
-      decoration: _cardDecoration(),
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.bottomRight,
-            child: CachedImageWidget(url: item.serviceImage, width: 50),
-          ),
-          Text(
-            item.name,
-            maxLines: 1,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, height: 1.2),
-          ),
-        ],
+    return InkWell(
+      onTap: () {
+        veterineryController.selectedService(item);
+        veterineryController.serviceCont.text = item.name;
+        currentSelectedService.value.serviceAmount = item.defaultPrice.toDouble();
+        veterineryController.bookVeterinaryReq.price =item.defaultPrice.toDouble();
+
+        veterineryController.getVet();
+
+        homeScreenController.goTo(VeternaryBooking());
+      },
+      child: Container(
+        height: 115,
+        padding: EdgeInsets.all(8),
+        decoration: _cardDecoration(),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomRight,
+              child: CachedImageWidget(url: item.serviceImage, width: 50),
+            ),
+            Text(
+              item.name,
+              maxLines: 1,
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, height: 1.2),
+            ),
+          ],
+        ),
       ),
     );
   }

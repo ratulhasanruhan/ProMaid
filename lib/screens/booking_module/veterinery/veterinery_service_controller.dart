@@ -46,6 +46,7 @@ class VeterineryController extends GetxController {
   TextEditingController serviceCont = TextEditingController();
   TextEditingController vetCont = TextEditingController();
   TextEditingController reasonCont = TextEditingController();
+  TextEditingController addressCont = TextEditingController();
   Rx<BookingDataModel> bookingFormData = BookingDataModel(
           service: SystemService(),
           payment: PaymentDetails(),

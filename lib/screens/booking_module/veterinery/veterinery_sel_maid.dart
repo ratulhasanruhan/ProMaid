@@ -219,13 +219,8 @@ class VeterinerySelMaid extends StatelessWidget {
                               serviceSlug: currentSelectedService.value.slug),
                           serviceImg: currentSelectedService.value.serviceImage,
                           onTap: () {
-                              if (veterineryController.bookVeterinaryReq.petId > 0) {
-                                hideKeyboard(context);
-                                veterineryController.handleBookNowClick();
-                              } else {
-                                toast(locale.value.pleaseSelectPet);
-                              }
-
+                            hideKeyboard(context);
+                            veterineryController.handleBookNowClick();
                           },
                         )
                             .visible(veterineryController.showBookBtn.value),

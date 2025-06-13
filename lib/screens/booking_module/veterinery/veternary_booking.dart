@@ -1,3 +1,4 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pawlly/screens/booking_module/veterinery/veterinery_sel_maid.dart';
@@ -78,7 +79,7 @@ class VeternaryBooking extends StatelessWidget {
                                 width: MediaQuery
                                     .of(context)
                                     .size
-                                    .width * 0.8,
+                                    .width * 0.9,
                               ),
                               Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -174,6 +175,64 @@ class VeternaryBooking extends StatelessWidget {
                         SizedBox(
                           height: 20,
                         ),
+                        Text(
+                          "Your Address",
+                          style: GoogleFonts.dmSans(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF1E1E3F),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 12),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF1F3F9),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                flex: 5,
+                                child: TextField(
+                                  controller: veterineryController.addressCont,
+                                  style: const TextStyle(
+                                    color: Colors.black87,
+                                    fontSize: 16,
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: 'Enter your address',
+                                    hintStyle: const TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 12,
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    isDense: true,
+                                    contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Flexible(
+                                flex: 1,
+                                child: SvgPicture.asset(
+                                  'assets/images/health_loc.svg',
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 10),
                         Text(
                           "Date & Time",
                           style: GoogleFonts.dmSans(
@@ -391,7 +450,10 @@ class VeternaryBooking extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             )
-                        )
+                        ),
+                        SizedBox(
+                          height: 35,
+                        ),
                       ],
                     ),
                   ),

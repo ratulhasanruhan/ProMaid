@@ -10,6 +10,8 @@ class VeterinerySelMaid extends StatelessWidget {
       VeterineryController>();
   final HomeScreenController homeScreenController = Get.find();
 
+  ScrollController scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +61,7 @@ class VeterinerySelMaid extends StatelessWidget {
               ),
             ),
             child: Obx(() {
-              if(veterineryController.vetList.isEmpty) {
+              if (veterineryController.vetList.isEmpty) {
                 return Center(
                   child: Text(
                     'No Maid Available',
@@ -71,112 +73,166 @@ class VeterinerySelMaid extends StatelessWidget {
                 );
               }
               else {
-                return GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: const EdgeInsets.all(12),
-                    itemCount:  veterineryController.vetList.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 12,
-                      crossAxisSpacing: 12,
-                      childAspectRatio: 0.65,
-                    ),
-                    itemBuilder: (context, index) {
-                      final vet = veterineryController.vetList[index];
-                      final isSelected = veterineryController.selectedVet.value == vet;
-
-                      return GestureDetector(
-                        onTap: () => veterineryController.selectedVet.value = vet,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                blurRadius: 8,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
+                return SingleChildScrollView(
+                  controller: scrollController,
+                  child: Column(
+                    children: [
+                      GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: const EdgeInsets.all(12),
+                          itemCount: veterineryController.vetList.length,
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 12,
+                            crossAxisSpacing: 12,
+                            childAspectRatio: 0.67,
                           ),
-                          child: Column(
-                            children: [
-                              Stack(
-                                children: [
-                                  Container(
-                                    height: 120,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                          itemBuilder: (context, index) {
+                            final vet = veterineryController.vetList[index];
+
+                            return InkWell(
+                              onTap: () {
+                                veterineryController.selectedVet(vet);
+                                veterineryController.vetCont.text =
+                                    veterineryController.selectedVet.value.fullName;
+
+                                veterineryController.showBookBtn(true);
+
+                                scrollController.animateTo(
+                                    scrollController.position.maxScrollExtent,
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut,
+                                );
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.1),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 4),
                                     ),
-                                    child: Center(
-                                      child: CachedImageWidget(url: vet.profileImage.value), // OR Image.network
-                                    ),
-                                  ),
-                                  if (isSelected)
-                                    const Positioned(
-                                      top: 8,
-                                      right: 8,
-                                      child: CircleAvatar(
-                                        radius: 12,
-                                        backgroundColor: Colors.white,
-                                        child: Icon(Icons.check_circle, color: Colors.blue, size: 20),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                vet.fullName,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
+                                  ],
                                 ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                vet.expert ?? 'Not specified',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 13,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 12),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Row(
+                                    Stack(
                                       children: [
-                                        const Icon(Icons.star, color: Colors.blue, size: 18),
-                                        const SizedBox(width: 4),
-                                        Text(
-                                          vet.ratingStar.toString(),
-                                          style: const TextStyle(fontWeight: FontWeight.w500),
+                                        ConstrainedBox(
+                                          constraints: const BoxConstraints(
+                                            minHeight: 90,
+                                            maxHeight: 110,
+                                          ),
+                                          child: Center(
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(16),
+                                              child: CachedImageWidget(
+                                                  url: vet.profileImage
+                                                      .value),
+                                            ), // OR Image.network
+                                          ),
                                         ),
+                                        Obx(() {
+                                          if (veterineryController.selectedVet.value.id == vet.id) {
+                                            return Positioned(
+                                              top: 8,
+                                              right: 8,
+                                              child: CircleAvatar(
+                                                radius: 12,
+                                                backgroundColor: Colors.white,
+                                                child: Icon(Icons.check_circle_outline,
+                                                    color: Color(0xFF0054A5), size: 20),
+                                              ),
+                                            );
+                                          }
+                                          return const SizedBox.shrink();
+                                        }),
                                       ],
                                     ),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                                      decoration: BoxDecoration(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(8),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      vet.fullName,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
                                       ),
-                                      child: const Text(
-                                        'Book',
-                                        style: TextStyle(color: Colors.white, fontSize: 13),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      vet.expert ?? 'Not specified',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 13,
                                       ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                                Icons.star, color: Color(0xFF0054A5),
+                                                size: 18),
+                                            Text(
+                                              vet.ratingStar.toString(),
+                                              style: const TextStyle(
+                                                color: Color(0xFF0054A5),
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 2),
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFF0054A5),
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          child: const Text(
+                                            'Book',
+                                            style: TextStyle(
+                                                color: Colors.white, fontSize: 13),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      );
-                    });
+                            );
+                          }),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Obx(
+                            () => AppButtonWithPricing(
+                          price: totalAmount.toStringAsFixed(2).toDouble(),
+                          tax: totalTax.toStringAsFixed(2).toDouble(),
+                          items: getServiceNameByServiceElement(
+                              serviceSlug: currentSelectedService.value.slug),
+                          serviceImg: currentSelectedService.value.serviceImage,
+                          onTap: () {
+                              if (veterineryController.bookVeterinaryReq.petId > 0) {
+                                hideKeyboard(context);
+                                veterineryController.handleBookNowClick();
+                              } else {
+                                toast(locale.value.pleaseSelectPet);
+                              }
+
+                          },
+                        )
+                            .visible(veterineryController.showBookBtn.value),
+                      ),
+                    ],
+                  ),
+                );
               }
             }),
           )

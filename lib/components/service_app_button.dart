@@ -35,7 +35,7 @@ class AppButtonWithPricing extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.only(left: 16, right: 16),
             decoration: ShapeDecoration(
-              color: isDarkMode.value ? darkGrayGeneral2 : lightPrimaryColor2,
+              color: isDarkMode.value ? darkGrayGeneral2 : Color(0xFFD4E0EB),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10),
@@ -57,7 +57,7 @@ class AppButtonWithPricing extends StatelessWidget {
                           price: price
                               .toStringAsFixed(Constants.DECIMAL_POINT)
                               .toDouble(),
-                          color: primaryColor,
+                          color: Color(0xFF0054A5),
                           size: 14,
                           isBoldText: true,
                         ),
@@ -105,7 +105,7 @@ class AppButtonWithPricing extends StatelessWidget {
             height: 50,
             alignment: Alignment.center,
             decoration: boxDecorationDefault(
-              color: primaryColor,
+              color: Color(0xFF0054A5),
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(10),
                 bottomRight: Radius.circular(10),

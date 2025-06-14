@@ -361,6 +361,89 @@ class VeternaryBooking extends StatelessWidget {
                             ],
                           ),
                         ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Add-Ons",
+                          style: GoogleFonts.dmSans(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF1E1E3F),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 14),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF1F3F9),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: CachedImageWidget(
+                                  url: 'https://t4.ftcdn.net/jpg/03/54/89/53/360_F_354895343_JbjmKh8E2lhmfWI68oqqWxBQaeeMPpMY.jpg',
+                                  height: 65,
+                                ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Pet Grooming",
+                                    style: GoogleFonts.dmSans(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF1E1E3F),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    "\$500",
+                                    style: GoogleFonts.dmSans(
+                                      fontSize: 14,
+                                      color: Color(0xFF1E1E3F),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              Column(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF0A0E57),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      padding: const EdgeInsets.all(8),
+                                      child: Icon(
+                                        Icons.shopping_cart,
+                                        color: Colors.white,
+                                        size: 18,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    "Add to\nBooking",
+                                    style: GoogleFonts.dmSans(
+                                      fontSize: 12,
+                                      color: Color(0xFF1E1E3F),
+                                    ),
+                                  ),
+                                ],
+                              )
+
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 10),
                         SizedBox(
                           height: 20,
                         ),

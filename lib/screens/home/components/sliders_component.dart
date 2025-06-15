@@ -114,7 +114,7 @@ class _SlidersComponentState extends State<SlidersComponent> {
             ),
           ),
           Positioned(
-            top: 30,
+            top: 38,
             right: 16,
             child: Container(
               decoration: BoxDecoration(

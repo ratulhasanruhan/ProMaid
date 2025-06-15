@@ -70,19 +70,12 @@ class VeternaryBooking extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Center(
-                          child: Stack(
-                            alignment: Alignment.bottomLeft,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Image.asset(
-                                'assets/images/booking_home.png',
-                                height: 150,
-                                width: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width * 0.9,
-                              ),
                               Column(
                                 mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     padding: EdgeInsets.symmetric(
@@ -114,7 +107,15 @@ class VeternaryBooking extends StatelessWidget {
                                     ),
                                   ),
                                 ],
-                              )
+                              ),
+                              SizedBox(width: 10,),
+                              Center(
+                                child: Image.asset(
+                                  'assets/images/booking_home.png',
+                                  height: 150,
+                                ),
+                              ),
+
                             ],
                           ),
                         ),
@@ -373,7 +374,7 @@ class VeternaryBooking extends StatelessWidget {
                         const SizedBox(height: 10),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 14),
+                              horizontal: 12, vertical: 14),
                           decoration: BoxDecoration(
                             color: const Color(0xFFF1F3F9),
                             borderRadius: BorderRadius.circular(16),
@@ -431,7 +432,7 @@ class VeternaryBooking extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
-                                    "Add to\nBooking",
+                                    "Add",
                                     style: GoogleFonts.dmSans(
                                       fontSize: 12,
                                       color: Color(0xFF1E1E3F),

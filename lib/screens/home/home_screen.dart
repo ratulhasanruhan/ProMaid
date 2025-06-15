@@ -62,9 +62,7 @@ class HomeScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  32.height,
-                                  GreetingsComponent(),
-                                  16.height,
+
                                   Obx(
                                     () => homeScreenController.isLoading.value
                                         ? const HomeScreenShimmer()
@@ -87,128 +85,47 @@ class HomeScreen extends StatelessWidget {
                                                         const SlidersComponent(),
                                                   ),
                                                   Padding(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 20),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        // TextField with icon and placeholder
-                                                        Flexible(
-                                                          flex: 9,
-                                                          child: Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Colors.grey
-                                                                  .shade200,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20),
-                                                            ),
-                                                            child: TextField(
-                                                              //controller: shopController.pCont.searchCont,
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                contentPadding:
-                                                                    const EdgeInsets
-                                                                        .symmetric(
-                                                                        vertical:
-                                                                            14),
-                                                                prefixIcon:
-                                                                    Container(
-                                                                  margin:
-                                                                      const EdgeInsets
-                                                                          .only(
-                                                                          left:
-                                                                              12,
-                                                                          right:
-                                                                              8),
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .white),
-                                                                  ),
-                                                                  width: 28,
-                                                                  height: 28,
-                                                                  child:
-                                                                      Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      shape: BoxShape
-                                                                          .circle,
-                                                                      color: Colors
-                                                                          .grey, // Replace with your icon color
-                                                                    ),
-                                                                    child:
-                                                                        Center(
-                                                                      child:
-                                                                          Container(
-                                                                        width:
-                                                                            8,
-                                                                        height:
-                                                                            8,
-                                                                        decoration:
-                                                                            const BoxDecoration(
-                                                                          shape:
-                                                                              BoxShape.circle,
-                                                                          color:
-                                                                              Colors.white,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                hintText:
-                                                                    "ProMaid Cleaning",
-                                                                hintStyle:
-                                                                    const TextStyle(
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                                border:
-                                                                    InputBorder
-                                                                        .none,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Flexible(
-                                                          flex: 2,
-                                                          child: InkWell(
-                                                            onTap: () {},
-                                                            child: Container(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8),
-                                                              height: 48,
-                                                              width: 48,
-                                                              decoration: BoxDecoration(
-                                                                  color: Colors
-                                                                      .grey
-                                                                      .shade200,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              16)),
-                                                              child: const Icon(
-                                                                  Icons.search,
-                                                                  color: Colors
-                                                                      .grey),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
+                                                    padding: const EdgeInsets.symmetric(
+                                                      horizontal: 8
                                                     ),
-                                                  )
+                                                    child: Container(
+                                                        decoration:
+                                                        BoxDecoration(
+                                                          color: Colors.grey.shade200,
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                              10),
+                                                        ),
+                                                        padding: const EdgeInsets.symmetric(
+                                                          vertical: 4,
+                                                        ),
+                                                        child: TextField(
+                                                          decoration: InputDecoration(
+                                                            border: InputBorder.none,
+                                                            hintText: 'Search for ProMaid Cleaning Services',
+                                                            prefixIcon:
+                                                            const Icon(
+                                                              Icons.search,
+                                                              color: Color(0xFF0F165C),
+                                                              size: 28,
+                                                            ),
+                                                            enabledBorder: OutlineInputBorder(
+                                                              borderRadius:
+                                                              BorderRadius.circular(18),
+                                                              borderSide: BorderSide.none,
+                                                            ),
+                                                            contentPadding: const EdgeInsets.symmetric(
+                                                              horizontal: 16,),
+                                                            isDense: true,
+                                                            filled: true,
+                                                            fillColor: Colors.white,
+                                                          ),
+                                                        ).paddingSymmetric(
+                                                            horizontal: 16, vertical: 8
+                                                        )
+                                                    ),
+                                                  ),
                                                 ],
                                               ),
                                               ChooseServiceComponents(),

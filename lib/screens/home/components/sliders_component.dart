@@ -63,7 +63,7 @@ class _SlidersComponentState extends State<SlidersComponent> {
       return const Offstage();
 
     return SizedBox(
-      height: 200,
+      height: 270,
       child: Stack(
         children: [
           PageView.builder(
@@ -111,6 +111,30 @@ class _SlidersComponentState extends State<SlidersComponent> {
               currentBorderRadius: radius(8),
               borderRadius: radius(8),
               currentDotWidth: 8,
+            ),
+          ),
+          Positioned(
+            top: 30,
+            right: 16,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                  ),
+                ],
+              ),
+              child: IconButton(
+                onPressed: () {
+                  Get.to(() => NotificationScreen());
+                },
+                icon: Assets.iconsIcUnselectedBell
+                    .iconImage(color: darkGray, size: 24),
+              ).visible(isLoggedIn.value),
             ),
           ),
         ],

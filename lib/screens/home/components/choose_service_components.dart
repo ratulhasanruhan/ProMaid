@@ -14,6 +14,24 @@ class ChooseServiceComponents extends StatelessWidget {
     Color(0xFFD9D9D9),
   ];
 
+  final List<String> demoIcon = [
+    'assets/images/home/office.png',
+    'assets/images/home/home.png',
+    'assets/images/home/clock.png',
+    'assets/images/home/office.png',
+    'assets/images/home/home.png',
+    'assets/images/home/clock.png',
+  ];
+
+  final List<String> title =[
+    "Once-Off" ,
+    "Reoccurring",
+    "Last Minute" ,
+    "Live in" ,
+    "Commute",
+    "Weekend"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -55,6 +73,8 @@ class ChooseServiceComponents extends StatelessWidget {
                     service: homeScreenController
                         .dashboardData.value.systemService[index],
                     color: cardColor[index % cardColor.length],
+                    demoImage: demoIcon[index],
+                    title: title[index],
                   ),
                 );
               },

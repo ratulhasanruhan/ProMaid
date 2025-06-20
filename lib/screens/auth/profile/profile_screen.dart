@@ -37,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
                       },
                     )),
                 32.height,
-                SettingItemWidget(
+                /*SettingItemWidget(
                   title: locale.value.myPets,
                   subTitle: locale.value.petProfileDetails,
                   splashColor: transparentColor,
@@ -53,9 +53,9 @@ class ProfileScreen extends StatelessWidget {
                   trailing: trailing,
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-                ),
-                commonDivider,
-                SettingItemWidget(
+                ),*/
+               // commonDivider,
+                /*SettingItemWidget(
                   title: locale.value.addPet,
                   subTitle: locale.value.addYourPetInformation,
                   splashColor: transparentColor,
@@ -70,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                   trailing: trailing,
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-                ),
+                ),*/
                 commonDivider,
                 SettingItemWidget(
                   title: locale.value.orders,

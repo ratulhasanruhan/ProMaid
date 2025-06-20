@@ -8,6 +8,8 @@ class ServiceCard extends StatelessWidget {
   final Widget? child;
   final bool showSubTexts;
   final Color? color;
+  final String? demoImage;
+  final String? title;
 
   const ServiceCard(
       {super.key,
@@ -16,6 +18,8 @@ class ServiceCard extends StatelessWidget {
       this.height = 130,
       this.showSubTexts = false,
       this.child,
+      this.demoImage,
+      this.title,
       this.color});
 
   @override
@@ -39,11 +43,10 @@ class ServiceCard extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(70),
-                  child: CachedImageWidget(
-                    url: service.serviceImage,
+                  child: Image.asset(
+                     demoImage ?? service.serviceImage,
                     height: 45,
                     width: 45,
-                    usePlaceholderIfUrlEmpty: false,
                   ),
                 ),
               )),
@@ -51,7 +54,7 @@ class ServiceCard extends StatelessWidget {
           Hero(
               tag: service.name + service.id.toString(),
               child: Text(
-                  getServiceNameByServiceElement(serviceSlug: service.slug),
+                  title ?? getServiceNameByServiceElement(serviceSlug: service.slug),
                   style: primaryTextStyle(decoration: TextDecoration.none))),
           if (showSubTexts) 12.height,
           if (showSubTexts)

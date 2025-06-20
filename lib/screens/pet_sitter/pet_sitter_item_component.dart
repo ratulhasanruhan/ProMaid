@@ -37,63 +37,18 @@ class PetSitterItemComponent extends StatelessWidget {
             Text(petSitter.fullName,
                 textAlign: TextAlign.center, style: boldTextStyle(size: 12)),
             16.height,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    if (petSitter.mobile.isEmpty) {
-                      toast(
-                          "${petSitter.fullName} ${locale.value.hasNotSharedTheir}");
-                    } else {
-                      launchCall(petSitter.mobile);
-                    }
-                  },
-                  behavior: HitTestBehavior.translucent,
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: boxDecorationDefault(
-                      color: isDarkMode.value
-                          ? darkGrayGeneral2
-                          : lightPrimaryColor,
-                      shape: BoxShape.circle,
-                    ),
-                    child: commonLeadingWid(
-                        imgPath: Assets.iconsIcCall,
-                        icon: Icons.mail_outlined,
-                        color: secondaryTextColor
-                            .withOpacity(isDarkMode.value ? 1 : 0.7)),
-                  ),
+            FilledButton(
+                onPressed: (){
+                  Get.to(() => EmployeeDetailScreen(), arguments: petSitter.id);
+                },
+                style: FilledButton.styleFrom(
+                  backgroundColor: Color(0xFF0F165C),
                 ),
-                16.width,
-                GestureDetector(
-                  onTap: () {
-                    log('PETSITTER.EMAIL: ${petSitter.email}');
-                    if (petSitter.email.isEmpty) {
-                      toast(
-                          "${petSitter.fullName} ${locale.value.hasNotSharedTheirEmail}");
-                    } else {
-                      launchMail(petSitter.email);
-                    }
-                  },
-                  behavior: HitTestBehavior.translucent,
-                  child: Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: boxDecorationDefault(
-                        color: isDarkMode.value
-                            ? darkGrayGeneral2
-                            : lightPrimaryColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: commonLeadingWid(
-                          imgPath: Assets.iconsIcMail,
-                          icon: Icons.mail_outlined,
-                          color: secondaryTextColor
-                              .withOpacity(isDarkMode.value ? 1 : 0.7))),
-                ),
-              ],
-            ),
+                child: Text(
+                  'Book Now',
+                  style: primaryTextStyle(color: Colors.white, size: 12),
+                )
+            )
           ],
         ).paddingSymmetric(horizontal: 16, vertical: 16),
       ),

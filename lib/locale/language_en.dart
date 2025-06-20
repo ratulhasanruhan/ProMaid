@@ -788,7 +788,7 @@ class LanguageEn extends BaseLanguage {
   String get bookSitter => 'Book Sitter';
 
   @override
-  String get petSitter => 'Pet Sitter';
+  String get petSitter => 'Live-in Maid';
 
   @override
   String get allReview => 'All Review';
@@ -1774,7 +1774,7 @@ class LanguageEn extends BaseLanguage {
       'Administrator has deactivated this service. Please try again later.';
 
   @override
-  String get petSitters => 'Pet Sitters';
+  String get petSitters => 'Live-in Maid';
 
   @override
   String get hasNotSharedTheir => 'has not shared their contact number';
